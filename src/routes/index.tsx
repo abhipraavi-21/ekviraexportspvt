@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Globe2, Wheat, PackageCheck, ShieldCheck, Sprout } from "lucide-react";
+import { ArrowRight, Globe2, Wheat, PackageCheck, ShieldCheck, Sprout, MapPin, Mail, Phone, Clock, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import heroImg from "@/assets/hero-agri.jpg";
@@ -88,6 +92,140 @@ function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+        {/* Contact */}
+        <section id="contact" className="relative">
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              background:
+                "radial-gradient(50% 50% at 20% 10%, oklch(0.42 0.09 135 / 0.08), transparent 60%), radial-gradient(50% 50% at 90% 90%, oklch(0.78 0.15 75 / 0.12), transparent 60%)",
+            }}
+          />
+          <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-24">
+            <div className="text-center max-w-2xl mx-auto">
+              <span className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-4 py-1.5 text-xs font-medium text-primary soft-shadow">
+                <Mail className="h-3.5 w-3.5" />
+                Get in Touch
+              </span>
+              <h2 className="mt-5 font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05]">
+                Let's Start a <span className="italic text-primary">Conversation</span>
+              </h2>
+              <p className="mt-4 text-muted-foreground text-lg">
+                Tell us what you're sourcing — we'll get back within 24 hours with availability,
+                samples, and indicative pricing.
+              </p>
+            </div>
+
+            <div className="mt-12 grid lg:grid-cols-5 gap-8">
+              {/* Form */}
+              <form
+                className="lg:col-span-3 bg-card rounded-3xl border border-border p-6 md:p-10 soft-shadow-lg"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const fd = new FormData(e.currentTarget);
+                  const subject = encodeURIComponent(`Enquiry from ${fd.get("name") || "Website"}`);
+                  const body = encodeURIComponent(
+                    `Name: ${fd.get("name")}\nCompany: ${fd.get("company")}\nEmail: ${fd.get("email")}\nPhone: ${fd.get("phone")}\nProduct Interest: ${fd.get("product")}\n\nMessage:\n${fd.get("message")}`,
+                  );
+                  window.location.href = `mailto:ekviraexporthouse@gmail.com?subject=${subject}&body=${body}`;
+                }}
+              >
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name *</Label>
+                    <Input id="name" name="name" required placeholder="Your full name" className="h-11" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="company">Company</Label>
+                    <Input id="company" name="company" placeholder="Company name" className="h-11" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email *</Label>
+                    <Input id="email" name="email" type="email" required placeholder="you@company.com" className="h-11" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input id="phone" name="phone" placeholder="+91 ..." className="h-11" />
+                  </div>
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label htmlFor="product">Product Interest</Label>
+                    <Select name="product">
+                      <SelectTrigger id="product" className="h-11">
+                        <SelectValue placeholder="Select a category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Grains & Cereals">Grains & Cereals</SelectItem>
+                        <SelectItem value="Pulses & Legumes">Pulses & Legumes</SelectItem>
+                        <SelectItem value="Spices">Spices</SelectItem>
+                        <SelectItem value="Vegetables">Vegetables</SelectItem>
+                        <SelectItem value="Fruits">Fruits</SelectItem>
+                        <SelectItem value="Farm Commodities">Farm Commodities</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label htmlFor="message">Message *</Label>
+                    <Textarea id="message" name="message" required rows={5} placeholder="Quantity, destination port, timeline, specifications..." />
+                  </div>
+                </div>
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="mt-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7"
+                >
+                  Send Enquiry <ArrowRight className="h-4 w-4" />
+                </Button>
+              </form>
+
+              {/* Contact info */}
+              <div className="lg:col-span-2 space-y-6">
+                <div className="bg-primary text-primary-foreground rounded-3xl p-8 soft-shadow-lg">
+                  <h3 className="font-serif text-2xl">Reach Us Directly</h3>
+                  <ul className="mt-6 space-y-5 text-sm">
+                    <li className="flex gap-3">
+                      <MapPin className="h-5 w-5 text-gold shrink-0 mt-0.5" />
+                      <span className="text-primary-foreground/90 leading-relaxed">
+                        A-620, Gera's Imperium Gateway,<br />Nashik Phata, PCMC, Pune - 411034
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <Mail className="h-5 w-5 text-gold shrink-0 mt-0.5" />
+                      <a href="mailto:ekviraexporthouse@gmail.com" className="text-primary-foreground/90 hover:text-gold transition-colors break-all">
+                        ekviraexporthouse@gmail.com
+                      </a>
+                    </li>
+                    <li className="flex gap-3">
+                      <Phone className="h-5 w-5 text-gold shrink-0 mt-0.5" />
+                      <a href="tel:+917276533359" className="text-primary-foreground/90 hover:text-gold transition-colors">
+                        +91 72765 33359
+                      </a>
+                    </li>
+                    <li className="flex gap-3">
+                      <Clock className="h-5 w-5 text-gold shrink-0 mt-0.5" />
+                      <span className="text-primary-foreground/90">Mon–Sat: 9 AM – 6 PM IST</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-card rounded-3xl border border-border p-8 soft-shadow">
+                  <p className="text-sm text-muted-foreground">
+                    We respond within 24 hours. WhatsApp enquiries welcome.
+                  </p>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="mt-4 w-full rounded-full bg-gold text-gold-foreground hover:bg-gold/90 h-12"
+                  >
+                    <a href="https://wa.me/917276533359" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
