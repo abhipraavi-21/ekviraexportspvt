@@ -5,5 +5,13 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { nitro } from "nitro/vite";
 
-export default defineConfig();
+const isVercelBuild = process.env.VERCEL === "1";
+
+export default defineConfig({
+  // TanStack Start on Vercel needs Nitro so Vercel receives a server output
+  // instead of a client-only assets folder with no index.html.
+  cloudflare: isVercelBuild ? false : undefined,
+  plugins: isVercelBuild ? [nitro()] : [],
+});
