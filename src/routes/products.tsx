@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Apple, Bean, Carrot, Flame, Package, Wheat } from "lucide-react";
+import productsBreadcrumbBanner from "@/assets/products-breadcrumb-banner.jpg";
+import { PageBreadcrumbHero } from "@/components/PageBreadcrumbHero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -31,14 +33,22 @@ function ProductsPage() {
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <section className="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-24">
+        <PageBreadcrumbHero
+          title="Export-Ready Farm Products"
+          crumbLabel="Products"
+          description="Browse our core agri categories sourced from India and prepared for dependable domestic and international trade."
+          image={productsBreadcrumbBanner}
+          imagePosition="object-[74%_center]"
+        />
+
+        <section className="max-w-7xl mx-auto px-5 md:px-8 py-14 md:py-16">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs uppercase tracking-[0.22em] text-primary font-medium">
               What We Trade
             </span>
-            <h1 className="mt-3 font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-foreground">
+            <h2 className="mt-3 font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-foreground">
               Farm Fresh. <span className="italic text-primary">Export Ready.</span>
-            </h1>
+            </h2>
           </div>
 
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

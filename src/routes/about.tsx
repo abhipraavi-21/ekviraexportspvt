@@ -11,6 +11,8 @@ import {
   Sprout,
   Truck,
 } from "lucide-react";
+import aboutBreadcrumbBanner from "@/assets/about-breadcrumb-banner.jpg";
+import { PageBreadcrumbHero } from "@/components/PageBreadcrumbHero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
@@ -93,6 +95,14 @@ function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <main className="flex-1">
+        <PageBreadcrumbHero
+          title="About Ekvira Export House"
+          crumbLabel="About"
+          description="A Pune-based agri export partner focused on trusted sourcing, compliant trade, and long-term buyer relationships."
+          image={aboutBreadcrumbBanner}
+          imagePosition="object-[72%_center]"
+        />
+
         <section className="relative overflow-hidden">
           <div
             className="absolute inset-0 -z-10 opacity-70"
@@ -101,19 +111,19 @@ function AboutPage() {
                 "radial-gradient(55% 55% at 85% 15%, oklch(0.78 0.15 75 / 0.18), transparent 60%), radial-gradient(45% 45% at 5% 90%, oklch(0.42 0.09 135 / 0.10), transparent 60%)",
             }}
           />
-          <div className="max-w-7xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-12 md:pb-16 grid lg:grid-cols-2 gap-14 items-start">
+          <div className="max-w-7xl mx-auto px-5 md:px-8 pt-12 md:pt-16 pb-12 md:pb-16 grid lg:grid-cols-2 gap-14 items-start">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-4 py-1.5 text-xs font-medium text-primary soft-shadow">
                 <Sprout className="h-3.5 w-3.5" />
                 Who We Are
               </span>
-              <h1 className="mt-6 font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-foreground">
+              <h2 className="mt-6 font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-foreground">
                 Your Trusted <span className="italic text-primary">Agri Trading</span>{" "}
                 <span className="relative inline-block">
                   Partner
                   <span className="absolute left-0 right-0 -bottom-1 h-1.5 rounded-full bg-gold/70" />
                 </span>
-              </h1>
+              </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
                 Ekvira Export House is a Pune-based merchant trading firm specializing in
                 the import and export of agricultural and farm products. We bridge Indian
@@ -176,7 +186,7 @@ function AboutPage() {
         </section>
 
         <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-20">
-          <div className="max-w-2xl">
+          <div className="max-w-4xl mx-auto text-center">
             <span className="text-xs uppercase tracking-[0.22em] text-primary font-medium">
               Our Approach
             </span>
@@ -202,14 +212,57 @@ function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-primary text-primary-foreground">
-          <div className="max-w-7xl mx-auto px-5 md:px-8 py-12 md:py-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center lg:text-left">
-                <div className="font-serif text-4xl md:text-5xl text-gold">{s.value}</div>
-                <div className="mt-2 text-sm opacity-80">{s.label}</div>
-              </div>
-            ))}
+        <section className="relative overflow-hidden bg-primary text-primary-foreground">
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(40% 45% at 12% 16%, oklch(0.78 0.15 75 / 0.22), transparent 65%), radial-gradient(32% 38% at 88% 82%, oklch(0.78 0.15 75 / 0.18), transparent 70%)",
+            }}
+          />
+
+          <div className="relative max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-20">
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="inline-flex items-center rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white/76">
+                Trade Snapshot
+              </span>
+              <h2 className="mt-5 font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.05] text-white">
+                Numbers that reflect our <span className="italic text-gold">export focus</span>
+              </h2>
+              <p className="mt-4 text-sm md:text-base text-white/72 max-w-2xl mx-auto leading-relaxed">
+                From sourcing depth to regional specialization, these metrics give a
+                quick view of the trade capability we are building around Indian
+                agricultural exports.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {stats.map((s, index) => (
+                <div
+                  key={s.label}
+                  className="group relative overflow-hidden rounded-[1.9rem] border border-white/10 bg-white/8 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/12 hover:shadow-[0_28px_60px_-28px_rgba(0,0,0,0.55)] md:p-7"
+                >
+                  <div className="absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-to-r from-gold/10 via-gold to-gold/10" />
+                  <div className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/45">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <div className="mt-5 font-serif text-5xl md:text-6xl leading-none text-gold">
+                    {s.value}
+                  </div>
+                  <div className="mt-4 text-sm md:text-base font-medium text-white/84">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
