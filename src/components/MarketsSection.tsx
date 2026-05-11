@@ -17,7 +17,11 @@ type Market = {
   greeting: string;
   label: string;
   mapName?: string;
-  type: "country" | "region";
+  type: "country" | "region" | "city";
+  markerTone?: "default" | "blue" | "green";
+  displayLabel?: string;
+  labelDx?: number;
+  labelDy?: number;
 };
 
 type MarketMarker = Market & {
@@ -35,10 +39,110 @@ const markets: Market[] = [
   },
   {
     greeting: "Hello",
+    label: "Edison, New Jersey",
+    mapName: "Edison, New Jersey",
+    coordinates: [-74.412, 40.518],
+    type: "city",
+    markerTone: "blue",
+    labelDx: 42,
+    labelDy: 24,
+  },
+  {
+    greeting: "Hello",
+    label: "Chicago, Illinois",
+    mapName: "Chicago, Illinois",
+    coordinates: [-87.6298, 41.8781],
+    type: "city",
+    markerTone: "blue",
+    labelDx: 0,
+    labelDy: 26,
+  },
+  {
+    greeting: "Hello",
+    label: "Fremont, California",
+    mapName: "Fremont, California",
+    coordinates: [-122.036, 37.5483],
+    type: "city",
+    markerTone: "blue",
+    labelDx: 0,
+    labelDy: 26,
+  },
+  {
+    greeting: "Hello",
+    label: "Houston, Texas",
+    mapName: "Houston, Texas",
+    coordinates: [-95.3698, 29.7604],
+    type: "city",
+    markerTone: "blue",
+    labelDx: 0,
+    labelDy: 26,
+  },
+  {
+    greeting: "Hello",
+    label: "New York",
+    mapName: "New York",
+    coordinates: [-74.006, 40.7128],
+    type: "city",
+    markerTone: "blue",
+    labelDx: -38,
+    labelDy: -18,
+  },
+  {
+    greeting: "Hello",
     label: "UK",
     mapName: "United Kingdom",
     coordinates: [-2.5, 54.6],
     type: "country",
+  },
+  {
+    greeting: "Hello",
+    label: "Leicester",
+    mapName: "Leicester",
+    coordinates: [-1.133, 52.6369],
+    type: "city",
+    markerTone: "green",
+    labelDx: 0,
+    labelDy: 26,
+  },
+  {
+    greeting: "Hello",
+    label: "London",
+    mapName: "London (Harrow, Brent, Ealing)",
+    coordinates: [-0.1276, 51.5072],
+    type: "city",
+    markerTone: "green",
+    labelDx: 0,
+    labelDy: 26,
+  },
+  {
+    greeting: "Hello",
+    label: "Slough",
+    mapName: "Slough",
+    coordinates: [-0.6, 51.51],
+    type: "city",
+    markerTone: "green",
+    labelDx: 0,
+    labelDy: -18,
+  },
+  {
+    greeting: "Hello",
+    label: "Hounslow",
+    mapName: "Hounslow",
+    coordinates: [-0.3615, 51.467],
+    type: "city",
+    markerTone: "green",
+    labelDx: 0,
+    labelDy: 26,
+  },
+  {
+    greeting: "Hello",
+    label: "Birmingham",
+    mapName: "Birmingham",
+    coordinates: [-1.8926, 52.4862],
+    type: "city",
+    markerTone: "green",
+    labelDx: 0,
+    labelDy: 26,
   },
   {
     greeting: "\u0645\u0631\u062d\u0628\u0627",
@@ -406,42 +510,73 @@ export function MarketsSection() {
                 })}
 
                 {marketMarkers.map((market) => {
-                  const glowRadius = isMobile
-                    ? market.type === "region"
-                      ? 15
-                      : 12
-                    : market.type === "region"
-                      ? 12
-                      : 9;
-                  const dotRadius = isMobile
-                    ? market.type === "region"
-                      ? 6.6
-                      : 5.4
-                    : market.type === "region"
-                      ? 5.5
-                      : 4.2;
+                  const isCity = market.type === "city";
+                  const isRegion = market.type === "region";
+                  const tone = market.markerTone ?? "default";
+                  const isBlueCity = tone === "blue";
+                  const isGreenCity = tone === "green";
+                  const isActiveMarket = activeMarketLabel === market.label;
                   const hitRadius = isMobile
-                    ? market.type === "region"
+                    ? isRegion
                       ? 34
-                      : 28
-                    : market.type === "region"
+                      : isCity
+                        ? 24
+                        : 28
+                    : isRegion
                       ? 18
-                      : 15;
+                      : isCity
+                        ? 22
+                        : 20;
+                  const labelWidth = isCity
+                    ? Math.min(240, Math.max(108, market.label.length * 7 + 22))
+                    : Math.min(78, Math.max(46, market.label.length * 6.5 + 18));
+                  const labelHeight = isCity ? 22 : 20;
+                  const labelFill = isBlueCity
+                    ? "oklch(0.97 0.02 235 / 0.95)"
+                    : isGreenCity
+                      ? "oklch(0.97 0.03 145 / 0.95)"
+                      : "white";
+                  const labelText = isBlueCity
+                    ? "oklch(0.22 0.10 255)"
+                    : isGreenCity
+                      ? "oklch(0.20 0.10 145)"
+                      : "oklch(0.25 0.06 255)";
+                  const labelDx = market.labelDx ?? 0;
+                  const labelDy = market.labelDy ?? (isRegion ? 24 : isCity ? 22 : 20);
+                  const displayLabel = market.displayLabel ?? market.label;
 
                   return (
-                    <g
-                      key={market.label}
-                      transform={`translate(${market.x}, ${market.y})`}
-                      filter="url(#market-glow)"
-                    >
+                    <g key={market.label} transform={`translate(${market.x}, ${market.y})`}>
                       <title>{`${market.mapName ?? market.label}: ${market.greeting}`}</title>
-                      <circle r={glowRadius} fill="oklch(0.84 0.17 85 / 0.24)" />
-                      <circle
-                        r={dotRadius}
-                        fill={highlightFill}
-                        stroke="oklch(1 0 0 / 0.95)"
-                        strokeWidth="2"
-                      />
+                      <g
+                        aria-hidden={!isActiveMarket}
+                        className="pointer-events-none transition-all duration-200"
+                        style={{
+                          opacity: isActiveMarket ? 1 : 0,
+                          transform: `translate(${labelDx}px, ${labelDy}px) translateY(${isActiveMarket ? 0 : 4}px)`,
+                        }}
+                      >
+                        <rect
+                          x={-labelWidth / 2}
+                          y={-10}
+                          width={labelWidth}
+                          height={labelHeight}
+                          rx={labelHeight / 2}
+                          fill={labelFill}
+                          opacity="0.92"
+                        />
+                        <text
+                          textAnchor="middle"
+                          dominantBaseline="middle"
+                          fill={labelText}
+                          fontSize={isCity ? "8.5" : "10"}
+                          fontWeight="700"
+                          letterSpacing={isCity ? "0.04em" : "0.12em"}
+                          style={{ textTransform: isCity ? "none" : "uppercase" }}
+                        >
+                          {displayLabel}
+                        </text>
+                      </g>
                       <circle
                         r={hitRadius}
                         role="button"

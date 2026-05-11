@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useState, type FocusEvent } from "react";
 import {
   FileText,
@@ -31,6 +31,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import heroAgriImage from "@/assets/hero-agri.jpg";
+import productsBannerImage from "@/assets/products-breadcrumb-banner.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,7 +59,8 @@ const categories = [
   {
     icon: Flame,
     title: "Spices",
-    eyebrow: "Category 01",
+    // eyebrow: "Category 01",
+    image: heroAgriImage,
     description:
       "Export-focused spice offerings prepared for buyer requirements, processed formats, and ready-to-cook demand.",
     products: [
@@ -72,7 +75,8 @@ const categories = [
   {
     icon: Wheat,
     title: "Grains & Cereals",
-    eyebrow: "Category 02",
+    // eyebrow: "Category 02",
+    image: productsBannerImage,
     description:
       "Buyer-ready grain and cereal staples prepared for bulk sourcing, consistent packing, and export movement.",
     products: ["Wheat", "Rice", "Maize", "Sorghum", "Barley", "Millets"],
@@ -80,7 +84,8 @@ const categories = [
   {
     icon: Bean,
     title: "Pulses & Legumes",
-    eyebrow: "Category 03",
+    // eyebrow: "Category 03",
+    image: heroAgriImage,
     description:
       "Reliable pulse selections suited for trade enquiries, food supply demand, and standard export handling.",
     products: ["Chana dal", "Moong dal", "Masoor dal", "Toor dal", "Urad dal", "Mixed pulses"],
@@ -148,72 +153,54 @@ function CategoryCard({ category }: { category: Category }) {
       }}
     >
       <div
-        className={`absolute inset-0 p-6 transition-all duration-300 md:p-8 ${
-          isOpen ? "pointer-events-none opacity-0 scale-[0.97]" : "opacity-100"
+        className={`absolute inset-0 p-4 transition-all duration-300 md:p-5 ${
+          isOpen ? "pointer-events-none opacity-0 scale-[0.98]" : "opacity-100"
         }`}
       >
-        <div className="flex h-full flex-col">
-          <div className="flex items-start justify-between gap-5">
-            <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gold/18 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-              <category.icon className="h-7 w-7" />
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-secondary/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Open List
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </span>
-          </div>
-
-          <div className="mt-6 text-xs font-medium uppercase tracking-[0.22em] text-primary">
-            {category.eyebrow}
-          </div>
-          <h3 className="mt-3 font-serif text-3xl leading-tight text-foreground md:text-4xl">
-            {category.title}
-          </h3>
-          <p className="mt-4 max-w-xl leading-7 text-muted-foreground">{category.description}</p>
-
-          <div className="mt-auto pt-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full border border-border/80 bg-secondary/60 px-4 py-2 text-sm font-medium text-foreground">
-                {category.products.length} Products
-              </span>
-              <span className="text-sm text-muted-foreground">Hover or tap to open the list.</span>
-            </div>
+        <div className="relative flex h-full overflow-hidden rounded-[1.7rem] border border-border/70 bg-card">
+          <img
+            src={category.image}
+            alt={category.title}
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,250,240,0.08)_0%,rgba(18,16,10,0.06)_45%,rgba(18,16,10,0.58)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+            <h3 className="font-serif text-3xl leading-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] md:text-4xl">
+              {category.title}
+            </h3>
           </div>
         </div>
       </div>
 
       <div
-        className={`absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(246,239,223,0.98)_100%)] p-6 transition-all duration-300 md:p-7 ${
+        className={`absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(246,239,223,0.98)_100%)] transition-all duration-300 ${
           isOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
         }`}
       >
-        <div className="flex h-full flex-col rounded-[1.7rem] border border-border/70 bg-secondary/55 p-5 md:p-6">
-          <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
-            <div>
-              <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-                {category.title}
-              </div>
-              <div className="mt-2 font-serif text-2xl text-foreground">Products</div>
-            </div>
-            <div className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              {category.products.length} Items
-            </div>
+        <div className="flex h-full w-full flex-col rounded-[2rem] border border-border/70 bg-secondary/55 p-5 md:p-6">
+          <div className="flex items-start justify-between gap-5">
+            <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gold/18 text-primary transition-colors">
+              <category.icon className="h-7 w-7" />
+            </span>
+           
           </div>
 
-          <div className="mt-4 min-h-0 flex-1 overflow-y-auto pr-1">
-            <div className="grid gap-2.5">
-              {category.products.map((product, index) => (
-                <div
-                  key={product}
-                  className="rounded-2xl border border-border/70 bg-card px-4 py-3 text-sm text-foreground soft-shadow"
-                >
-                  <span className="mr-2 font-medium text-primary">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  {product}
-                </div>
-              ))}
-            </div>
+          {/* <div className="mt-6 text-xs font-medium uppercase tracking-[0.22em] text-primary">
+            {category.eyebrow}
+          </div> */}
+          <h3 className="mt-3 font-serif text-3xl leading-tight text-foreground md:text-4xl">
+            {category.title}
+          </h3>
+          <p className="mt-4 max-w-xl leading-7 text-muted-foreground">{category.description}</p>
+
+          <div className="mt-auto flex justify-center pt-6 pb-1">
+            <Button
+              asChild
+              size="sm"
+              className="rounded-full border border-zinc-300 bg-zinc-200 text-zinc-900 hover:bg-zinc-300"
+            >
+              <Link to="/products">View More</Link>
+            </Button>
           </div>
         </div>
       </div>
@@ -282,10 +269,6 @@ function HomePage() {
         <section>
           <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-20">
             <div className="mb-10 text-center max-w-3xl mx-auto">
-              <span className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-4 py-1.5 text-xs font-medium text-primary soft-shadow">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Why Choose Us
-              </span>
               <h2 className="mt-5 font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05]">
                 Why Choose <span className="italic text-primary">Us</span>
               </h2>
@@ -328,11 +311,7 @@ function HomePage() {
           />
           <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-24">
             <div className="text-center max-w-2xl mx-auto">
-              <span className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-4 py-1.5 text-xs font-medium text-primary soft-shadow">
-                <Mail className="h-3.5 w-3.5" />
-                Get in Touch
-              </span>
-              <h2 className="mt-5 font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05]">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.05]">
                 Let's Start a <span className="italic text-primary">Conversation</span>
               </h2>
               <p className="mt-4 text-muted-foreground text-lg">
@@ -347,9 +326,13 @@ function HomePage() {
                 onSubmit={(e) => {
                   e.preventDefault();
                   const fd = new FormData(e.currentTarget);
-                  const subject = encodeURIComponent(`Enquiry from ${fd.get("name") || "Website"}`);
+                  const getValue = (key: string) => fd.get(key)?.toString().trim() || "-";
+                  const name = getValue("name");
+                  const subject = encodeURIComponent(
+                    `Enquiry from ${name === "-" ? "Website" : name}`,
+                  );
                   const body = encodeURIComponent(
-                    `Name: ${fd.get("name")}\nCompany: ${fd.get("company")}\nEmail: ${fd.get("email")}\nPhone: ${fd.get("phone")}\nProduct Interest: ${fd.get("product")}\n\nMessage:\n${fd.get("message")}`,
+                    `Name: ${name}\nCompany: ${getValue("company")}\nEmail: ${getValue("email")}\nPhone: ${getValue("phone")}\nLocation: ${getValue("location")}\nCategory: ${getValue("category")}\nProduct Interest: ${getValue("product")}\n\nMessage:\n${getValue("message")}`,
                   );
                   window.location.href = `mailto:ekviraexporthouse@gmail.com?subject=${subject}&body=${body}`;
                 }}
@@ -388,6 +371,27 @@ function HomePage() {
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone</Label>
                     <Input id="phone" name="phone" placeholder="+91 ..." className="h-11" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="location">Location</Label>
+                    <Input
+                      id="location"
+                      name="location"
+                      placeholder="City, State, Country"
+                      className="h-11"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="category">Category</Label>
+                    <Select name="category">
+                      <SelectTrigger id="category" className="h-11">
+                        <SelectValue placeholder="Select category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Supplier">Supplier</SelectItem>
+                        <SelectItem value="Customer">Customer</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2 sm:col-span-2">
                     <Label htmlFor="product">Product Interest</Label>

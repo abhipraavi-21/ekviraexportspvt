@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sprout } from "lucide-react";
+import { ChevronDown, Menu, Sprout, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/products", label: "Products" },
+  { to: "/products", label: "Products", mobileLabel: "Products & Services" },
 ] as const;
 
 export function SiteHeader() {
@@ -20,7 +20,9 @@ export function SiteHeader() {
           </span>
           <span className="flex flex-col leading-tight">
             <span className="font-serif text-lg text-foreground">Ekvira</span>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Export House</span>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+              Export House
+            </span>
           </span>
         </Link>
 
@@ -39,8 +41,11 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Button asChild className="rounded-full bg-gold text-gold-foreground hover:bg-gold/90 shadow-none px-5">
-            <a href="mailto:hello@ekviraexport.com">Get a Quote</a>
+          <Button
+            asChild
+            className="rounded-full bg-gold text-gold-foreground hover:bg-gold/90 shadow-none px-5"
+          >
+            <a href="mailto:hello@ekviraexport.com">Enquire Now</a>
           </Button>
         </div>
 
@@ -61,14 +66,22 @@ export function SiteHeader() {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="px-3 py-2.5 rounded-lg text-foreground/85 hover:bg-accent"
+                className="flex w-full items-center justify-start gap-2 px-3 py-2.5 rounded-lg text-foreground/85 hover:bg-accent"
                 activeProps={{ className: "text-primary font-medium bg-accent" }}
               >
-                {n.label}
+                <span className="whitespace-nowrap">{n.mobileLabel ?? n.label}</span>
+                {n.to === "/products" ? (
+                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background text-foreground/70">
+                    <ChevronDown className="h-3.5 w-3.5" />
+                  </span>
+                ) : null}
               </Link>
             ))}
-            <Button asChild className="mt-2 rounded-full bg-gold text-gold-foreground hover:bg-gold/90">
-              <a href="mailto:hello@ekviraexport.com">Get a Quote</a>
+            <Button
+              asChild
+              className="mt-2 rounded-full bg-gold text-gold-foreground hover:bg-gold/90"
+            >
+              <a href="mailto:hello@ekviraexport.com">Enquire Now</a>
             </Button>
           </div>
         </div>
