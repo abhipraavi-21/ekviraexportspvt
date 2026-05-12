@@ -22,6 +22,8 @@ type Market = {
   displayLabel?: string;
   labelDx?: number;
   labelDy?: number;
+  hoverTargetLabel?: string;
+  bubbleItems?: string[];
 };
 
 type MarketMarker = Market & {
@@ -36,6 +38,13 @@ const markets: Market[] = [
     mapName: "United States of America",
     coordinates: [-98.5, 39.8],
     type: "country",
+    bubbleItems: [
+      "Edison, New Jersey",
+      "Chicago, Illinois",
+      "Fremont, California",
+      "Houston, Texas",
+      "New York",
+    ],
   },
   {
     greeting: "Hello",
@@ -46,6 +55,7 @@ const markets: Market[] = [
     markerTone: "blue",
     labelDx: 42,
     labelDy: 24,
+    hoverTargetLabel: "USA",
   },
   {
     greeting: "Hello",
@@ -56,6 +66,7 @@ const markets: Market[] = [
     markerTone: "blue",
     labelDx: 0,
     labelDy: 26,
+    hoverTargetLabel: "USA",
   },
   {
     greeting: "Hello",
@@ -66,6 +77,7 @@ const markets: Market[] = [
     markerTone: "blue",
     labelDx: 0,
     labelDy: 26,
+    hoverTargetLabel: "USA",
   },
   {
     greeting: "Hello",
@@ -76,6 +88,7 @@ const markets: Market[] = [
     markerTone: "blue",
     labelDx: 0,
     labelDy: 26,
+    hoverTargetLabel: "USA",
   },
   {
     greeting: "Hello",
@@ -86,6 +99,7 @@ const markets: Market[] = [
     markerTone: "blue",
     labelDx: -38,
     labelDy: -18,
+    hoverTargetLabel: "USA",
   },
   {
     greeting: "Hello",
@@ -93,6 +107,15 @@ const markets: Market[] = [
     mapName: "United Kingdom",
     coordinates: [-2.5, 54.6],
     type: "country",
+    hoverTargetLabel: "Europe",
+    bubbleItems: [
+      "United Kingdom",
+      "Leicester",
+      "London",
+      "Slough",
+      "Hounslow",
+      "Birmingham",
+    ],
   },
   {
     greeting: "Hello",
@@ -103,6 +126,7 @@ const markets: Market[] = [
     markerTone: "green",
     labelDx: 0,
     labelDy: 26,
+    hoverTargetLabel: "Europe",
   },
   {
     greeting: "Hello",
@@ -113,6 +137,7 @@ const markets: Market[] = [
     markerTone: "green",
     labelDx: 0,
     labelDy: 26,
+    hoverTargetLabel: "Europe",
   },
   {
     greeting: "Hello",
@@ -123,6 +148,7 @@ const markets: Market[] = [
     markerTone: "green",
     labelDx: 0,
     labelDy: -18,
+    hoverTargetLabel: "Europe",
   },
   {
     greeting: "Hello",
@@ -133,6 +159,7 @@ const markets: Market[] = [
     markerTone: "green",
     labelDx: 0,
     labelDy: 26,
+    hoverTargetLabel: "Europe",
   },
   {
     greeting: "Hello",
@@ -143,6 +170,7 @@ const markets: Market[] = [
     markerTone: "green",
     labelDx: 0,
     labelDy: 26,
+    hoverTargetLabel: "Europe",
   },
   {
     greeting: "\u0645\u0631\u062d\u0628\u0627",
@@ -198,6 +226,14 @@ const markets: Market[] = [
     label: "Europe",
     coordinates: [12.0, 50.5],
     type: "region",
+    bubbleItems: [
+      "United Kingdom",
+      "Leicester",
+      "London",
+      "Slough",
+      "Hounslow",
+      "Birmingham",
+    ],
   },
   {
     greeting: "Hello",
@@ -285,6 +321,10 @@ const marketMarkers = markets
 
 const marketMarkersByLabel = new Map(marketMarkers.map((market) => [market.label, market]));
 
+function getHoverLabel(market: Market) {
+  return market.hoverTargetLabel ?? market.label;
+}
+
 const highlightFill = "oklch(0.84 0.17 85)";
 const highlightStroke = "oklch(0.4 0.08 135 / 0.78)";
 const bubbleFill = "oklch(0.995 0.002 85)";
@@ -337,12 +377,21 @@ export function MarketsSection() {
     : null;
 
   const activeMarketName = activeMarket?.mapName ?? activeMarket?.label ?? "";
+  const activeMarketItems = activeMarket?.bubbleItems ?? [];
   const markerLeft = activeMarket ? (activeMarket.x / mapWidth) * frameSize.width : 0;
   const markerTop = activeMarket ? (activeMarket.y / mapHeight) * frameSize.height : 0;
 
-  const preferredBubbleWidth = isMobile ? 210 : Math.max(210, activeMarketName.length * 8 + 74);
+  const preferredBubbleWidth = isMobile
+    ? Math.max(180, Math.min(240, activeMarketName.length * 7 + 42))
+    : Math.max(210, activeMarketName.length * 8 + 74, activeMarketItems.length > 0 ? 290 : 0);
   const bubbleWidth = clamp(preferredBubbleWidth, 170, Math.max(170, frameSize.width - 20));
-  const bubbleHeight = isMobile ? 88 : 96;
+  const bubbleHeight = isMobile
+    ? activeMarketItems.length > 0
+      ? 112
+      : 88
+    : activeMarketItems.length > 0
+      ? 148
+      : 96;
   const placeAbove = markerTop > bubbleHeight + 34;
   const bubbleAlignment = isMobile
     ? "center"
@@ -372,6 +421,10 @@ export function MarketsSection() {
 
   const toggleMarket = (label: string) => {
     setActiveMarketLabel((current) => (current === label ? null : label));
+  };
+
+  const setMarketFromHover = (market: Market) => {
+    setActiveMarketLabel(getHoverLabel(market));
   };
 
   return (
@@ -516,6 +569,7 @@ export function MarketsSection() {
                   const isBlueCity = tone === "blue";
                   const isGreenCity = tone === "green";
                   const isActiveMarket = activeMarketLabel === market.label;
+                  const hoverLabel = getHoverLabel(market);
                   const hitRadius = isMobile
                     ? isRegion
                       ? 34
@@ -545,9 +599,8 @@ export function MarketsSection() {
                   const labelDy = market.labelDy ?? (isRegion ? 24 : isCity ? 22 : 20);
                   const displayLabel = market.displayLabel ?? market.label;
 
-                  return (
-                    <g key={market.label} transform={`translate(${market.x}, ${market.y})`}>
-                      <title>{`${market.mapName ?? market.label}: ${market.greeting}`}</title>
+                return (
+                  <g key={market.label} transform={`translate(${market.x}, ${market.y})`}>
                       <g
                         aria-hidden={!isActiveMarket}
                         className="pointer-events-none transition-all duration-200"
@@ -586,33 +639,33 @@ export function MarketsSection() {
                         aria-label={`${market.mapName ?? market.label}: ${market.greeting}`}
                         onMouseEnter={() => {
                           if (!isMobile) {
-                            setActiveMarketLabel(market.label);
+                            setActiveMarketLabel(hoverLabel);
                           }
                         }}
                         onMouseLeave={() => {
                           if (!isMobile) {
                             setActiveMarketLabel((current) =>
-                              current === market.label ? null : current,
+                              current === hoverLabel ? null : current,
                             );
                           }
                         }}
-                        onFocus={() => setActiveMarketLabel(market.label)}
+                        onFocus={() => setMarketFromHover(market)}
                         onBlur={() => {
                           if (!isMobile) {
                             setActiveMarketLabel((current) =>
-                              current === market.label ? null : current,
+                              current === hoverLabel ? null : current,
                             );
                           }
                         }}
                         onClick={(event) => {
                           event.stopPropagation();
-                          toggleMarket(market.label);
+                          toggleMarket(hoverLabel);
                         }}
                         onKeyDown={(event) => {
                           if (event.key === "Enter" || event.key === " ") {
                             event.preventDefault();
                             event.stopPropagation();
-                            toggleMarket(market.label);
+                            toggleMarket(hoverLabel);
                           }
 
                           if (event.key === "Escape") {
@@ -669,31 +722,51 @@ export function MarketsSection() {
                       className="relative rounded-[1.7rem] px-4 pb-3 pt-3"
                       style={{ background: bubbleFill }}
                     >
-                      <div
-                        className="absolute left-4 top-3 grid h-9 w-9 place-items-center rounded-full"
-                        style={{ background: bubbleShadow }}
-                      >
-                        <span
-                          className="font-serif text-2xl leading-none"
-                          style={{ color: bubbleFill }}
-                        >
-                          "
-                        </span>
-                      </div>
-
-                      <div className="pl-10 pr-1 text-center">
+                      <div className={`text-center ${isMobile ? "px-0.5" : "px-1"}`}>
                         <div
-                          className="text-base font-semibold leading-tight sm:text-lg md:text-[1.55rem]"
+                          className="text-sm font-semibold leading-tight sm:text-lg md:text-[1.55rem]"
                           style={{ color: bubbleText }}
                         >
                           {activeMarket.greeting}
                         </div>
                         <div
-                          className="mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] sm:text-xs"
+                          className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] sm:text-xs"
                           style={{ color: bubbleText }}
                         >
                           {activeMarketName}
                         </div>
+                        {activeMarketItems.length > 0 ? (
+                          isMobile ? (
+                            <div
+                              className="mt-2 grid gap-0.5 text-[8.5px] font-medium leading-tight"
+                              style={{ color: bubbleText }}
+                            >
+                              {activeMarketItems.map((item) => (
+                                <div key={item} className="truncate">
+                                  {item}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div
+                              className={`mt-2.5 flex flex-wrap items-center justify-center font-medium ${
+                                isMobile ? "gap-x-1.5 gap-y-1" : "gap-x-2 gap-y-1"
+                              } text-[10px] sm:text-[11px]`}
+                              style={{ color: bubbleText }}
+                            >
+                              {activeMarketItems.map((item) => (
+                                <span
+                                  key={item}
+                                  className={`rounded-full border border-black/10 bg-black/5 ${
+                                    isMobile ? "px-2 py-0.5" : "px-2.5 py-1"
+                                  }`}
+                                >
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
+                          )
+                        ) : null}
                       </div>
                     </div>
                   </div>

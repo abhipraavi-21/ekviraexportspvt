@@ -4,7 +4,6 @@ import {
   FileText,
   ArrowRight,
   ArrowUpRight,
-  Bean,
   Clock,
   Flame,
   Globe2,
@@ -13,8 +12,14 @@ import {
   MessageCircle,
   PackageCheck,
   Phone,
+  BottleWine,
+  Carrot,
+  CupSoda,
+  Factory,
   ShieldCheck,
+  Shirt,
   Wheat,
+  Sprout,
 } from "lucide-react";
 import { DigitalExportBanner } from "@/components/DigitalExportBanner";
 import { MarketsSection } from "@/components/MarketsSection";
@@ -32,9 +37,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import heroAgriImage from "@/assets/hero-agri.jpg";
-import productsBannerImage from "@/assets/products-breadcrumb-banner.jpg";
-
+import vegetablesFruitsImage from "@/assets/category-images/vegetables-fruits.png";
+import drinksSpiritsImage from "@/assets/category-images/drinks-spirits.jpg";
+import textilesImage from "@/assets/category-images/textiles.jpg";
+import beveragesImage from "@/assets/category-images/beverages.jpg";
+import engineeringGoodsImage from "@/assets/category-images/engineering-goods.jpg";
+import seasonalProductsImage from "@/assets/category-images/seasonal-products.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -58,38 +66,63 @@ const highlights = [
 
 const categories = [
   {
-    icon: Flame,
-    title: "Spices",
+    icon: Carrot,
+    title: "Vegetables & Fruits",
     // eyebrow: "Category 01",
-    image: heroAgriImage,
+    image: vegetablesFruitsImage,
     description:
-      "Export-focused spice offerings prepared for buyer requirements, processed formats, and ready-to-cook demand.",
+      "Fresh produce visuals for retail, wholesale, and export-led sourcing conversations.",
     products: [
-      "Red chilli powder",
-      "Cumin powder",
-      "Coriander powder",
-      "Turmeric powder",
-      "All types of processed spices",
-      "Ready-to-cook powders",
+      "Fresh vegetables",
+      "Seasonal fruits",
+      "Mixed produce",
+      "Cold-chain supply",
     ],
   },
   {
-    icon: Wheat,
-    title: "Grains & Cereals",
+    icon: BottleWine,
+    title: "Drinks & Spirits",
     // eyebrow: "Category 02",
-    image: productsBannerImage,
+    image: drinksSpiritsImage,
     description:
-      "Buyer-ready grain and cereal staples prepared for bulk sourcing, consistent packing, and export movement.",
-    products: ["Wheat", "Rice", "Maize", "Sorghum", "Barley", "Millets"],
+      "Bar and spirits imagery suited to hospitality, retail, and premium trade presentations.",
+    products: ["Cocktail spirits", "Whisky", "Wine", "Mixers"],
   },
   {
-    icon: Bean,
-    title: "Pulses & Legumes",
+    icon: Shirt,
+    title: "Textiles",
     // eyebrow: "Category 03",
-    image: heroAgriImage,
+    image: textilesImage,
     description:
-      "Reliable pulse selections suited for trade enquiries, food supply demand, and standard export handling.",
-    products: ["Chana dal", "Moong dal", "Masoor dal", "Toor dal", "Urad dal", "Mixed pulses"],
+      "Fabric and textile visuals for apparel, furnishing, and bulk material sourcing.",
+    products: ["Cotton", "Linen", "Woven fabric", "Rolls"],
+  },
+  {
+    icon: CupSoda,
+    title: "Beverages",
+    // eyebrow: "Category 04",
+    image: beveragesImage,
+    description:
+      "Packaged beverage imagery for soft drinks, refreshment lines, and distribution channels.",
+    products: ["Soft drinks", "Energy drinks", "Juices", "Packaged beverages"],
+  },
+  {
+    icon: Factory,
+    title: "Engineering Goods",
+    // eyebrow: "Category 05",
+    image: engineeringGoodsImage,
+    description:
+      "Industrial machinery and engineering visuals for B2B supply, fabrication, and trade leads.",
+    products: ["Machinery", "Machine parts", "Tools", "Industrial components"],
+  },
+  {
+    icon: Sprout,
+    title: "Seasonal Products",
+    // eyebrow: "Category 06",
+    image: seasonalProductsImage,
+    description:
+      "Seasonal harvest and festive product imagery for time-bound sourcing and merchandising.",
+    products: ["Harvest produce", "Festive goods", "Limited-season items", "Seasonal packs"],
   },
 ] as const;
 
@@ -254,8 +287,8 @@ function HomePage() {
                 Explore Our <span className="italic text-primary">Categories</span>
               </h2>
               <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
-                A structured category section is now in place, starting with spices. We can keep
-                adding more categories here in the same format.
+                A structured category section is now in place, covering a wider mix of products
+                in the same format.
               </p>
             </div>
 
@@ -403,10 +436,12 @@ function HomePage() {
                       <SelectContent>
                         <SelectItem value="Grains & Cereals">Grains & Cereals</SelectItem>
                         <SelectItem value="Pulses & Legumes">Pulses & Legumes</SelectItem>
-                        <SelectItem value="Spices">Spices</SelectItem>
-                        <SelectItem value="Vegetables">Vegetables</SelectItem>
-                        <SelectItem value="Fruits">Fruits</SelectItem>
-                        <SelectItem value="Farm Commodities">Farm Commodities</SelectItem>
+                        <SelectItem value="Vegetables & Fruits">Vegetables & Fruits</SelectItem>
+                        <SelectItem value="Drinks & Spirits">Drinks & Spirits</SelectItem>
+                        <SelectItem value="Textiles">Textiles</SelectItem>
+                        <SelectItem value="Beverages">Beverages</SelectItem>
+                        <SelectItem value="Engineering Goods">Engineering Goods</SelectItem>
+                        <SelectItem value="Seasonal Products">Seasonal Products</SelectItem>
                         <SelectItem value="Other">Other</SelectItem>
                       </SelectContent>
                     </Select>
