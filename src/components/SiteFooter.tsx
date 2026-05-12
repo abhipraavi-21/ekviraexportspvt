@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Sprout } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt } from "react-icons/fa";
+import ekviraLogo from "@/assets/ekvira-logo.jpeg";
 
 const socialLinks = [
   {
@@ -25,26 +26,23 @@ const footerCategories = [
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border/60 bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto grid gap-10 px-5 py-14 md:grid-cols-2 md:px-8 xl:grid-cols-4 xl:gap-12">
+      <div className="max-w-7xl mx-auto grid gap-6 px-5 py-9 md:grid-cols-2 md:px-8 md:py-10 xl:grid-cols-4 xl:gap-8">
         <div className="xl:pr-6">
-          <div className="flex items-center gap-2.5">
-            <span className="h-10 w-10 rounded-xl bg-gold flex items-center justify-center">
-              <Sprout className="h-5 w-5 text-gold-foreground" />
-            </span>
-            <div className="leading-tight">
-              <div className="font-serif text-lg">Ekvira Export House</div>
-              <div className="text-[10px] uppercase tracking-[0.18em] opacity-70">
-                Pune - India
-              </div>
-            </div>
-          </div>
-          <p className="mt-4 text-sm opacity-80 max-w-xs">
+          <Link to="/" className="inline-flex" aria-label="Ekvira Export House home">
+            <img
+              src={ekviraLogo}
+              alt="Ekvira Export House"
+              className="block h-12 w-auto md:h-16"
+            />
+          </Link>
+          <div className="mt-2 text-[10px] uppercase tracking-[0.18em] opacity-70">Pune - India</div>
+          <p className="mt-2 text-sm opacity-80 max-w-xs">
             Bridging Indian Agri to Global Markets.
           </p>
 
-          <div className="mt-6">
+          <div className="mt-4">
             <div className="text-[11px] uppercase tracking-[0.18em] opacity-70">Follow Us</div>
-            <div className="mt-3 flex items-center gap-3">
+            <div className="mt-2.5 flex items-center gap-2.5">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -54,7 +52,7 @@ export function SiteFooter() {
                   target={social.href === "#" ? undefined : "_blank"}
                   rel={social.href === "#" ? undefined : "noreferrer"}
                   onClick={social.href === "#" ? (event) => event.preventDefault() : undefined}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-foreground/15 bg-white/10 text-primary-foreground/90 transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-gold-foreground"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-primary-foreground/15 bg-white/10 text-primary-foreground/90 transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-gold-foreground"
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -64,8 +62,8 @@ export function SiteFooter() {
         </div>
 
         <div className="xl:pt-1">
-          <h4 className="font-serif text-base mb-3">Quick Links</h4>
-          <ul className="space-y-2 text-sm opacity-85">
+          <h4 className="mb-2.5 font-serif text-base">Quick Links</h4>
+          <ul className="space-y-1.5 text-sm opacity-85">
             <li className="flex items-start gap-2">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80" />
               <Link to="/" className="hover:text-gold transition-colors">
@@ -88,8 +86,8 @@ export function SiteFooter() {
         </div>
 
         <div className="xl:pt-1">
-          <h4 className="mb-3 font-serif text-base">Categories</h4>
-          <ul className="grid gap-2 text-sm opacity-85">
+          <h4 className="mb-2.5 font-serif text-base">Product Categories</h4>
+          <ul className="grid gap-1.5 text-sm opacity-85">
             {footerCategories.map((category) => (
               <li key={category} className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80" />
@@ -100,39 +98,51 @@ export function SiteFooter() {
         </div>
 
         <div className="xl:pt-1">
-          <h4 className="font-serif text-base mb-3">Contact</h4>
-          <ul className="space-y-2 text-sm opacity-85">
+          <h4 className="mb-2.5 font-serif text-base">Contact</h4>
+          <ul className="space-y-1.5 text-sm opacity-85">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <span>Pune, Maharashtra, India</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80" />
-              <a href="mailto:hello@ekviraexport.com" className="hover:text-gold">
-                hello@ekviraexport.com
+              <a href="mailto:ekviraexporthouse@gmail.com" className="hover:text-gold break-all">
+                ekviraexporthouse@gmail.com
+              </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80" />
+              <a href="tel:+917276533359" className="whitespace-nowrap hover:text-gold">
+                +91 7276533359
+              </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80" />
+              <a href="tel:+917875803175" className="whitespace-nowrap hover:text-gold">
+                +91 7875803175
               </a>
             </li>
           </ul>
 
-          <div className="mt-6">
+          <div className="mt-4">
             <div className="text-[11px] uppercase tracking-[0.18em] opacity-70">
               Company Details
             </div>
-            <dl className="mt-3 space-y-3 text-sm">
+            <dl className="mt-2.5 space-y-2">
               <div className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80" />
-                <div>
-                  <dt className="opacity-65">CIN</dt>
-                  <dd className="mt-1 font-medium tracking-[0.04em] text-primary-foreground/95">
+                <div className="flex items-center gap-2 whitespace-nowrap text-[13px]">
+                  <dt className="shrink-0 opacity-65">CIN</dt>
+                  <dd className="font-medium text-primary-foreground/95">
                     U46909PN2026PTC253999
                   </dd>
                 </div>
               </div>
               <div className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/80" />
-                <div>
-                  <dt className="opacity-65">GST</dt>
-                  <dd className="mt-1 font-medium tracking-[0.04em] text-primary-foreground/95">
+                <div className="flex items-center gap-2 whitespace-nowrap text-[13px]">
+                  <dt className="shrink-0 opacity-65">GST</dt>
+                  <dd className="font-medium text-primary-foreground/95">
                     27AAJCE6086E1ZF
                   </dd>
                 </div>
@@ -142,7 +152,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 py-5 text-xs opacity-70 text-center">
+        <div className="max-w-7xl mx-auto px-5 py-3 text-center text-xs opacity-70 md:px-8">
           Copyright 2026 Ekvira Export House Pvt Ltd. All rights reserved.
         </div>
       </div>

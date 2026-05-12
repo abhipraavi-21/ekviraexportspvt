@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, Sprout, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
+import ekviraLogo from "@/assets/ekvira-logo.jpeg";
 import { Button } from "@/components/ui/button";
 
 const nav = [
@@ -14,16 +15,17 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-18 py-3 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2.5 group" onClick={() => setOpen(false)}>
-          <span className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center soft-shadow">
-            <Sprout className="h-5 w-5 text-primary-foreground" />
-          </span>
-          <span className="flex flex-col leading-tight">
-            <span className="font-serif text-lg text-foreground">Ekvira</span>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              Export House
-            </span>
-          </span>
+        <Link
+          to="/"
+          className="group flex items-center"
+          onClick={() => setOpen(false)}
+          aria-label="Ekvira Export House home"
+        >
+          <img
+            src={ekviraLogo}
+            alt="Ekvira Export House"
+            className="block h-11 w-auto transition-transform duration-200 group-hover:scale-[1.01] md:h-14"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">
@@ -45,7 +47,7 @@ export function SiteHeader() {
             asChild
             className="rounded-full bg-gold text-gold-foreground hover:bg-gold/90 shadow-none px-5"
           >
-            <a href="mailto:hello@ekviraexport.com">Enquire Now</a>
+            <a href="mailto:ekviraexporthouse@gmail.com">Enquire Now</a>
           </Button>
         </div>
 
@@ -81,7 +83,7 @@ export function SiteHeader() {
               asChild
               className="mt-2 rounded-full bg-gold text-gold-foreground hover:bg-gold/90"
             >
-              <a href="mailto:hello@ekviraexport.com">Enquire Now</a>
+              <a href="mailto:ekviraexporthouse@gmail.com">Enquire Now</a>
             </Button>
           </div>
         </div>

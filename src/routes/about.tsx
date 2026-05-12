@@ -194,7 +194,7 @@ function AboutPage() {
                   variant="outline"
                   className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 h-12"
                 >
-                  <a href="mailto:hello@ekviraexport.com">Talk to Us</a>
+                  <a href="mailto:ekviraexporthouse@gmail.com">Talk to Us</a>
                 </Button>
               </div>
               </div>
@@ -514,7 +514,7 @@ function AboutPage() {
                 size="lg"
                 className="rounded-full bg-gold text-gold-foreground hover:bg-gold/90 px-6 h-12"
               >
-                <a href="mailto:hello@ekviraexport.com">
+                <a href="mailto:ekviraexporthouse@gmail.com">
                   Get a Quote <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>

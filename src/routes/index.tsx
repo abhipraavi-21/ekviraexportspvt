@@ -23,6 +23,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { whatsappLink } from "@/lib/whatsapp";
 import {
   Select,
   SelectContent,
@@ -476,7 +477,7 @@ function HomePage() {
                     size="lg"
                     className="mt-4 w-full rounded-full bg-gold text-gold-foreground hover:bg-gold/90 h-12"
                   >
-                    <a href="https://wa.me/917276533359" target="_blank" rel="noopener noreferrer">
+                    <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                       <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
                     </a>
                   </Button>
