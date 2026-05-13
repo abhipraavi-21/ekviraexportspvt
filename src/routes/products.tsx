@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Apple, Bean, Carrot, Flame, Package, Wheat } from "lucide-react";
 import productsBreadcrumbBanner from "@/assets/products-breadcrumb-banner.jpg";
 import { PageBreadcrumbHero } from "@/components/PageBreadcrumbHero";
@@ -26,13 +26,35 @@ type PreviewItem = {
   image: string;
 };
 
+type DetailSection = {
+  label: string;
+  items: string[];
+};
+
 type Product = {
   icon: typeof Wheat;
   title: string;
   items: string;
   previewSummary: string;
   previewItems: PreviewItem[];
+  previewStyle?: "grid" | "carousel";
+  details?: DetailSection[];
 };
+
+function chunkPreviewItems(items: PreviewItem[], size: number) {
+  const chunks: PreviewItem[][] = [];
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size));
+  }
+  return chunks;
+}
+
+function splitProductItems(items: string) {
+  return items
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
 
 function svgDataUri(svg: string) {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
@@ -174,179 +196,301 @@ function makePreviewImage(
 
 const products: Product[] = [
   {
-    icon: Wheat,
-    title: "Grains & Cereals",
-    items: "Wheat, Rice, Maize, Sorghum",
-    previewSummary: "Core bulk grains for milling, food supply and consistent export movement.",
+    icon: Apple,
+    title: "Vegetables & Fruits",
+    items: "Green Chilli, Onion, Lemon, Drumstick, Garlic, Cabbage, Banana, Mango, Pomegranate, Grapes, Custard Apple, Guava, Dragon Fruit, Watermelon, Muskmelon, Tamarind",
+    previewSummary: "Fresh produce lines sourced across India's key growing belts for export buyers.",
     previewItems: [
       {
-        name: "Wheat",
-        info: "Durable milling grain for flour, semolina and bulk food supply.",
-        image: makePreviewImage("Wheat", "#d8b365", "#fff5d8", "grain"),
+        name: "Green Chilli",
+        info: "",
+        image: makePreviewImage("Green Chilli", "#79b85d", "#eef8df", "veg"),
       },
       {
-        name: "Rice",
-        info: "Clean, graded rice lots for retail, foodservice and bulk trade.",
-        image: makePreviewImage("Rice", "#8cc9da", "#eff9fd", "pulse"),
+        name: "Onion",
+        info: "",
+        image: makePreviewImage("Onion", "#c48f58", "#fff3df", "veg"),
       },
       {
-        name: "Maize",
-        info: "Reliable maize supply for feed, starch and industrial use.",
-        image: makePreviewImage("Maize", "#f2b94b", "#fff3cc", "grain"),
+        name: "Lemon",
+        info: "",
+        image: makePreviewImage("Lemon", "#e4c247", "#fff8d5", "fruit"),
       },
       {
-        name: "Sorghum",
-        info: "Versatile grain suited to food blends, fodder and regional trade.",
-        image: makePreviewImage("Sorghum", "#8bb86b", "#eef8df", "grain"),
+        name: "Drumstick",
+        info: "",
+        image: makePreviewImage("Drumstick", "#7aa95a", "#edf9df", "veg"),
+      },
+      {
+        name: "Garlic",
+        info: "",
+        image: makePreviewImage("Garlic", "#d9c8a2", "#fbf5e7", "veg"),
+      },
+      {
+        name: "Cabbage",
+        info: "",
+        image: makePreviewImage("Cabbage", "#78b56d", "#edf8e8", "veg"),
+      },
+      {
+        name: "Banana",
+        info: "",
+        image: makePreviewImage("Banana", "#e2c34f", "#fff8df", "fruit"),
+      },
+      {
+        name: "Mango",
+        info: "",
+        image: makePreviewImage("Mango", "#e59d3d", "#fff2d0", "fruit"),
+      },
+      {
+        name: "Pomegranate",
+        info: "",
+        image: makePreviewImage("Pomegranate", "#c84c5a", "#fff1f4", "fruit"),
+      },
+      {
+        name: "Grapes",
+        info: "",
+        image: makePreviewImage("Grapes", "#8b67ca", "#f2ecff", "fruit"),
+      },
+      {
+        name: "Custard Apple",
+        info: "",
+        image: makePreviewImage("Custard Apple", "#cfa85e", "#fff4de", "fruit"),
+      },
+      {
+        name: "Guava",
+        info: "",
+        image: makePreviewImage("Guava", "#73b47a", "#edf8ea", "fruit"),
+      },
+      {
+        name: "Dragon Fruit",
+        info: "",
+        image: makePreviewImage("Dragon Fruit", "#d35f84", "#fff0f5", "fruit"),
+      },
+      {
+        name: "Watermelon",
+        info: "",
+        image: makePreviewImage("Watermelon", "#da6b5a", "#fff0ec", "fruit"),
+      },
+      {
+        name: "Muskmelon",
+        info: "",
+        image: makePreviewImage("Muskmelon", "#d8ae58", "#fff8df", "fruit"),
+      },
+      {
+        name: "Tamarind",
+        info: "",
+        image: makePreviewImage("Tamarind", "#9b7458", "#f7efe4", "veg"),
+      },
+    ],
+    previewStyle: "carousel",
+    details: [
+      {
+        label: "Products",
+        items: [
+          "Green Chilli",
+          "Onion",
+          "Lemon",
+          "Drumstick",
+          "Garlic",
+          "Cabbage",
+          "Banana",
+          "Mango",
+          "Pomegranate",
+          "Grapes",
+          "Custard Apple",
+          "Guava",
+          "Dragon Fruit",
+          "Watermelon",
+          "Muskmelon",
+          "Tamarind",
+        ],
+      },
+      {
+        label: "Sourced From",
+        items: ["Nashik", "Jalgaon", "Dhule", "Nandurbar", "Ratnagiri", "Solapur", "Satara", "Kolhapur"],
+      },
+      {
+        label: "Major Export Markets",
+        items: ["UAE", "Saudi Arabia", "Qatar", "Oman"],
       },
     ],
   },
   {
     icon: Bean,
-    title: "Pulses & Legumes",
-    items: "Chana, Moong, Masoor, Toor Dal",
-    previewSummary: "Reliable pulse lines prepared for food manufacturing and wholesale buyers.",
+    title: "Drinks & Spirits",
+    items: "Red Wine, White Wine, Sparkling Wine, Fruit Wine, Grape Winee", 
+    previewSummary: "Beverage and spirits-focused lines for trade and hospitality supply.",
     previewItems: [
       {
-        name: "Chana",
-        info: "Firm pulse staple for kitchens, mills and bulk buyers.",
-        image: makePreviewImage("Chana", "#c69b5f", "#fff2df", "pulse"),
+        name: "Juices",
+        info: "Fruit-based drinks for retail and hospitality channels.",
+        image: makePreviewImage("Juices", "#8cc9da", "#eff9fd", "commodity"),
       },
       {
-        name: "Moong",
-        info: "Light, clean lots suited for sprouting and daily cooking.",
-        image: makePreviewImage("Moong", "#8fc98a", "#eefbe9", "pulse"),
+        name: "Mixers",
+        info: "Bar and beverage mixers for commercial supply.",
+        image: makePreviewImage("Mixers", "#c68a45", "#fff4d8", "commodity"),
       },
       {
-        name: "Masoor",
-        info: "Fast-cooking lentil for packed food and institutional supply.",
-        image: makePreviewImage("Masoor", "#e0a57a", "#fff0e5", "pulse"),
+        name: "Spirits",
+        info: "Premium beverages for regulated trade channels.",
+        image: makePreviewImage("Spirits", "#8262c4", "#f1ebff", "commodity"),
       },
       {
-        name: "Toor Dal",
-        info: "Trusted split lentil for consistent demand and export packing.",
-        image: makePreviewImage("Toor Dal", "#d59a51", "#fff4d3", "pulse"),
+        name: "Ready-to-Serve",
+        info: "Convenient drink formats suited to quick distribution.",
+        image: makePreviewImage("Ready-to-Serve", "#e0a57a", "#fff0e5", "commodity"),
       },
     ],
+    previewStyle: "carousel",
   },
   {
     icon: Flame,
-    title: "Spices & Condiments",
-    items: "Turmeric, Cumin, Coriander, Chilli",
-    previewSummary:
-      "Aromatic, export-ready spice lines for blending, seasoning and food processing.",
+    title: "Textiles",
+    items: "Terry Towels (350–750 gsm, White & Colours — ideal for hotel industry), Napkins, Blankets, Cotton Dohar (Single & Double Bed), Bedsheets (Single & Double Bed)",
+    previewSummary: "Textile trade lines for apparel, home furnishing and industrial use.",
     previewItems: [
       {
-        name: "Turmeric",
-        info: "Color-rich roots and powders with strong export demand.",
-        image: makePreviewImage("Turmeric", "#e3b23c", "#fff7d2", "spice"),
+        name: "Fabric",
+        info: "Woven and knitted textiles for garment and home use.",
+        image: makePreviewImage("Fabric", "#d8b365", "#fff5d8", "grain"),
       },
       {
-        name: "Cumin",
-        info: "Aromatic seed lots for seasoning, blending and retail packs.",
-        image: makePreviewImage("Cumin", "#c68a45", "#fff4d8", "spice"),
+        name: "Yarn",
+        info: "Consistent yarn supply for textile manufacturing.",
+        image: makePreviewImage("Yarn", "#8cc9da", "#eff9fd", "pulse"),
       },
       {
-        name: "Coriander",
-        info: "Fresh, earthy spice used across trade and food manufacturing.",
-        image: makePreviewImage("Coriander", "#7bb57c", "#eef9ea", "spice"),
+        name: "Apparel",
+        info: "Finished textile goods ready for retail markets.",
+        image: makePreviewImage("Apparel", "#f2b94b", "#fff3cc", "grain"),
       },
       {
-        name: "Chilli",
-        info: "Heat-forward product lines for sauces, blends and kitchens.",
-        image: makePreviewImage("Chilli", "#dc6b4d", "#fff0ea", "spice"),
+        name: "Home Textiles",
+        info: "Soft furnishing and household textile products.",
+        image: makePreviewImage("Home Textiles", "#8bb86b", "#eef8df", "grain"),
       },
     ],
+    previewStyle: "carousel",
   },
   {
     icon: Carrot,
-    title: "Vegetables",
-    items: "Onion, Garlic, Potato, Tomato",
-    previewSummary:
-      "Fresh vegetable sourcing tailored to wholesale, retail and foodservice demand.",
+    title: "Beverages",
+    items: "Soda Water, Jeera Soda, Lemon Soda, Soft Drinks, Packaged Drinking Water",
+    previewSummary: "Beverage-focused supply for daily consumption and retail channels.",
     previewItems: [
       {
-        name: "Onion",
-        info: "Crisp bulbs prepared for bulk handling and timely dispatch.",
-        image: makePreviewImage("Onion", "#a94c47", "#fff2ef", "veg"),
+        name: "Tea",
+        info: "Everyday beverage stock for retail and foodservice.",
+        image: makePreviewImage("Tea", "#c69b5f", "#fff2df", "fruit"),
       },
       {
-        name: "Garlic",
-        info: "Bold flavor stock for kitchens, foodservice and processors.",
-        image: makePreviewImage("Garlic", "#e2d3b0", "#fffaf0", "veg"),
+        name: "Coffee",
+        info: "Roasted beverage lines for wholesale buyers.",
+        image: makePreviewImage("Coffee", "#8fc98a", "#eefbe9", "fruit"),
       },
       {
-        name: "Potato",
-        info: "Reliable tubers for everyday retail and wholesale supply.",
-        image: makePreviewImage("Potato", "#b78b5c", "#fbf1e5", "veg"),
+        name: "Milk Drinks",
+        info: "Convenient packaged drinks for broad market demand.",
+        image: makePreviewImage("Milk Drinks", "#e0a57a", "#fff0e5", "fruit"),
       },
       {
-        name: "Tomato",
-        info: "Versatile fresh produce for wholesale and processing demand.",
-        image: makePreviewImage("Tomato", "#d65d4b", "#fff0ed", "veg"),
+        name: "Functional Beverages",
+        info: "Specialty beverage lines for modern consumer demand.",
+        image: makePreviewImage("Functional Beverages", "#d59a51", "#fff4d3", "fruit"),
       },
     ],
+    previewStyle: "carousel",
   },
   {
     icon: Apple,
-    title: "Fruits",
-    items: "Mango, Pomegranate, Banana, Grapes",
-    previewSummary: "Seasonal and steady fruit lines prepared for fresh-market buyers.",
+    title: "Engineering Goods",
+    items: "Available on enquiry — industrial components, hardware, and allied engineering products sourced from Maharashtra's manufacturing belt",
+    previewSummary: "Industrial and hardware lines for fabrication, assembly and repair.",
     previewItems: [
       {
-        name: "Mango",
-        info: "Seasonal export fruit with strong market recognition.",
-        image: makePreviewImage("Mango", "#e7a33d", "#fff4d2", "fruit"),
+        name: "Components",
+        info: "Precision parts for industrial and manufacturing use.",
+        image: makePreviewImage("Components", "#6f8b4d", "#eff6df", "commodity"),
       },
       {
-        name: "Pomegranate",
-        info: "Bright, premium fruit for retail and gift supply.",
-        image: makePreviewImage("Pomegranate", "#bf4d5d", "#fff1f4", "fruit"),
+        name: "Tools",
+        info: "Workshop and maintenance tools for trade buyers.",
+        image: makePreviewImage("Tools", "#6f6f8f", "#f0f0fb", "commodity"),
       },
       {
-        name: "Banana",
-        info: "High-volume fruit suited to steady daily movement.",
-        image: makePreviewImage("Banana", "#d9bd50", "#fff8de", "fruit"),
+        name: "Machinery Parts",
+        info: "Critical parts for machines, repair and replacement.",
+        image: makePreviewImage("Machinery Parts", "#c48139", "#fff0d9", "commodity"),
       },
       {
-        name: "Grapes",
-        info: "Table grapes prepared for fresh market buyers.",
-        image: makePreviewImage("Grapes", "#8262c4", "#f1ebff", "fruit"),
+        name: "Fasteners",
+        info: "Hardware essentials for assembly and construction.",
+        image: makePreviewImage("Fasteners", "#8a7742", "#f8f4d9", "commodity"),
       },
     ],
+    previewStyle: "carousel",
   },
   {
     icon: Package,
-    title: "Farm Commodities",
-    items: "Jaggery, Oil Seeds, Animal Feed",
-    previewSummary: "Flexible commodity sourcing for processors, traders and custom requirements.",
+    title: "Seasonal Products",
+    items: "Ganpati / Ganapati Murtis (Eco-friendly & Traditional), Festive Decorative Items, Puja Essentials & Cultural Artefacts",
+    previewSummary: "Season-linked product lines for holidays, events and special demand peaks.",
     previewItems: [
       {
-        name: "Jaggery",
-        info: "Traditional sweetener for retail packs and food use.",
-        image: makePreviewImage("Jaggery", "#c48139", "#fff0d9", "commodity"),
+        name: "Festival Goods",
+        info: "Seasonal stock for festive retail and event supply.",
+        image: makePreviewImage("Festival Goods", "#c48139", "#fff0d9", "commodity"),
       },
       {
-        name: "Oil Seeds",
-        info: "Seed lots for pressing, blending and processing.",
-        image: makePreviewImage("Oil Seeds", "#8a7742", "#f8f4d9", "commodity"),
+        name: "Gifting",
+        info: "Special packs and products suited to gifting demand.",
+        image: makePreviewImage("Gifting", "#8a7742", "#f8f4d9", "commodity"),
       },
       {
-        name: "Animal Feed",
-        info: "Bulk feed materials for livestock and farm channels.",
-        image: makePreviewImage("Animal Feed", "#6f8b4d", "#eff6df", "commodity"),
+        name: "Decor",
+        info: "Seasonal decorative items for retail and event use.",
+        image: makePreviewImage("Decor", "#6f8b4d", "#eff6df", "commodity"),
       },
       {
-        name: "Custom Sourcing",
-        info: "Flexible sourcing options for buyer-specific trade requests.",
-        image: makePreviewImage("Custom Sourcing", "#6f6f8f", "#f0f0fb", "commodity"),
+        name: "Seasonal Demand",
+        info: "Flexible supply for time-sensitive order windows.",
+        image: makePreviewImage("Seasonal Demand", "#6f6f8f", "#f0f0fb", "commodity"),
       },
     ],
+    previewStyle: "carousel",
   },
 ] as const;
 
 function ProductsPage() {
   const [activeProduct, setActiveProduct] = useState<(typeof products)[number]>(products[0]);
+  const [carouselPage, setCarouselPage] = useState(0);
+
+  const activeCarouselPages =
+    activeProduct.previewStyle !== "grid" ? chunkPreviewItems(activeProduct.previewItems, 2) : [];
+  const activeProductDetails =
+    activeProduct.details ?? [
+      {
+        label: "Products",
+        items: splitProductItems(activeProduct.items),
+      },
+    ];
+
+  useEffect(() => {
+    setCarouselPage(0);
+  }, [activeProduct.title]);
+
+  useEffect(() => {
+    if (activeProduct.previewStyle === "grid" || activeCarouselPages.length <= 1) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setCarouselPage((current) => (current + 1) % activeCarouselPages.length);
+    }, 2600);
+
+    return () => window.clearInterval(timer);
+  }, [activeCarouselPages.length, activeProduct.previewStyle, activeProduct.title]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -370,8 +514,8 @@ function ProductsPage() {
             </h2>
           </div>
 
-          <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-start">
-            <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 lg:ml-auto lg:max-w-2xl lg:pr-8 xl:pr-12">
+          <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,0.94fr)_minmax(360px,1.06fr)] lg:items-start">
+            <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 lg:ml-auto lg:max-w-2xl lg:pr-6 xl:pr-10">
               {products.map((p) => (
                 <button
                   key={p.title}
@@ -423,23 +567,84 @@ function ProductsPage() {
                   </span>
                 </div>
 
-                <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                  {activeProduct.previewItems.map((item) => (
-                    <div
-                      key={item.name}
-                      className="overflow-hidden rounded-[1.7rem] border border-border/60 bg-background"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="h-36 w-full object-cover object-center"
-                      />
-                      <div className="p-4">
-                        <h4 className="font-serif text-xl text-foreground">{item.name}</h4>
-                        <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.info}</p>
+                <div className="mt-6">
+                  {activeProduct.previewStyle !== "grid" ? (
+                    <div>
+                      <div className="overflow-hidden rounded-[1.7rem] border border-border/60 bg-background">
+                        <div
+                          className="flex transition-transform duration-700 ease-out"
+                          style={{ transform: `translateX(-${carouselPage * 100}%)` }}
+                        >
+                          {activeCarouselPages.map((page, pageIndex) => (
+                            <div key={pageIndex} className="min-w-full p-3">
+                              <div className="grid grid-cols-2 gap-3">
+                                {page.map((item) => (
+                                  <article
+                                    key={item.name}
+                                    className="overflow-hidden rounded-[1.45rem] border border-border/60 bg-card"
+                                  >
+                                    <img
+                                      src={item.image}
+                                      alt={item.name}
+                                      className="h-[230px] w-full object-cover object-center"
+                                    />
+                                  </article>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
+
+                      {activeProductDetails ? (
+                        <div
+                          className={`mt-5 grid gap-4 ${
+                            activeProductDetails.length === 1 ? "grid-cols-1" : "md:grid-cols-3"
+                          }`}
+                        >
+                          {activeProductDetails.map((section) => (
+                            <div
+                              key={section.label}
+                              className="rounded-[1.5rem] border border-border/60 bg-background p-4"
+                            >
+                              <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-primary/70">
+                                {section.label}
+                              </div>
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {section.items.map((item) => (
+                                  <span
+                                    key={item}
+                                    className="w-full rounded-full border border-border/70 bg-secondary/50 px-3 py-1 text-[12px] text-foreground/80"
+                                  >
+                                    {item}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
                     </div>
-                  ))}
+                  ) : (
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {activeProduct.previewItems.map((item) => (
+                        <div
+                          key={item.name}
+                          className="overflow-hidden rounded-[1.7rem] border border-border/60 bg-background"
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="h-36 w-full object-cover object-center"
+                          />
+                          <div className="p-4">
+                            <h4 className="font-serif text-xl text-foreground">{item.name}</h4>
+                            <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.info}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </aside>

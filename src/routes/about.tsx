@@ -13,7 +13,6 @@ import {
   Search,
   ShieldCheck,
   Sprout,
-  Users2,
   Truck,
 } from "lucide-react";
 import aboutBreadcrumbBanner from "@/assets/about-breadcrumb-banner.jpg";
@@ -97,30 +96,35 @@ const supplierStory = [
     desc: "We begin by finding suppliers who can provide the best goods and services.",
     accent: "#78d7cf",
     bubbleClass: "lg:left-[24%] lg:top-[84%]",
+    bubbleSizeClass: undefined,
   },
   {
     icon: ClipboardCheck,
     step: "STEP 2",
-    title: "Evaluating suppliers",
-    desc: "Each option is checked for quality, pricing, consistency, and compliance.",
+    title: "Supplier Management",
+    desc: "Each option is checked for quality, pricing, consistency, and compliance. The right partners are then onboarded with clear expectations and simple communication.",
     accent: "#5d84b8",
-    bubbleClass: "lg:left-[13%] lg:top-[45%]",
-  },
-  {
-    icon: Users2,
-    step: "STEP 3",
-    title: "Onboarding suppliers",
-    desc: "The right partners are onboarded with clear expectations and simple communication.",
-    accent: "#f0bf39",
-    bubbleClass: "lg:left-[58%] lg:top-[61%]",
+    bubbleClass: "lg:left-[18%] lg:top-[46%]",
+    bubbleSizeClass: "lg:h-[280px] lg:w-[280px] lg:px-7",
   },
   {
     icon: BadgeCheck,
-    step: "STEP 4",
+    step: "STEP 3",
     title: "Certificates",
-    desc: "IEC, Spice Board in India, APEDA, FSSAI, and ISO close the story with trust.",
+    desc: "",
     accent: "#ef6251",
-    bubbleClass: "lg:left-[83%] lg:top-[18%]",
+    bubbleClass: "lg:left-[58%] lg:top-[61%]",
+    bubbleSizeClass: "lg:h-[260px] lg:w-[260px] lg:px-6",
+    showCertificates: true,
+  },
+  {
+    icon: Globe2,
+    step: "STEP 4",
+    title: "Global Export",
+    desc: "We ship to 50+ countries ensuring every order arrives fresh, compliant, and on time.",
+    accent: "#ef6251",
+    bubbleClass: "lg:left-[79%] lg:top-[18%]",
+    bubbleSizeClass: "lg:h-[240px] lg:w-[240px] lg:px-6",
   },
 ] as const;
 
@@ -262,13 +266,13 @@ function AboutPage() {
             }}
           />
 
-          <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-20">
-            <div className="flex flex-col gap-12">
+          <div className="max-w-7xl mx-auto px-5 md:px-8 py-12 md:py-16">
+            <div className="flex flex-col gap-8 md:gap-10">
               <div className="max-w-xl">
-                <h2 className="font-serif text-4xl leading-tight text-foreground sm:text-5xl lg:text-6xl">
+                <h2 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl">
                   What sets us apart
                 </h2>
-                <p className="mt-5 max-w-sm text-base leading-7 text-muted-foreground">
+                <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground md:text-base md:leading-7">
                   Finding, evaluating, and onboarding suppliers that can provide the best goods and
                   services.
                 </p>
@@ -276,42 +280,44 @@ function AboutPage() {
 
               <div className="relative">
                 <div className="lg:hidden">
-                  <div className="rounded-[2.25rem] border border-border/60 bg-card p-6 soft-shadow-lg">
-                    <div className="grid gap-4">
-                      {supplierStory.map((step, index) => {
-                        const isLast = index === supplierStory.length - 1;
+                  <div className="rounded-[2.1rem] border border-border/60 bg-card p-5 soft-shadow-lg md:p-6">
+                    <div className="grid gap-3.5 md:gap-4">
+                      {supplierStory.map((step) => {
+                        const showCertificates = "showCertificates" in step && step.showCertificates;
 
                         return (
                           <div
                             key={step.title}
-                            className="rounded-[1.75rem] border border-border/60 bg-background p-5"
+                            className="rounded-[1.65rem] border border-border/60 bg-background p-4 md:p-5"
                           >
-                            <div className="flex items-start gap-4">
+                            <div className="flex items-start gap-3.5 md:gap-4">
                               <span
-                                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"
+                                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl"
                                 style={{ backgroundColor: `${step.accent}22`, color: step.accent }}
                               >
-                                <step.icon className="h-5 w-5" />
+                                <step.icon className="h-4.5 w-4.5" />
                               </span>
                               <div className="min-w-0">
                                 <div
-                                  className="text-[11px] font-semibold uppercase tracking-[0.22em]"
+                                  className="text-[10px] font-semibold uppercase tracking-[0.2em]"
                                   style={{ color: step.accent }}
                                 >
                                   {step.step}
                                 </div>
-                                <h3 className="mt-1 font-serif text-2xl text-foreground">
+                                <h3 className="mt-1 font-serif text-xl md:text-2xl text-foreground">
                                   {step.title}
                                 </h3>
-                                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                                  {step.desc}
-                                </p>
-                                {isLast ? (
-                                  <div className="mt-4 flex flex-wrap gap-2">
+                                {step.desc ? (
+                                  <p className="mt-1.5 text-xs leading-5 text-muted-foreground md:text-sm md:leading-6">
+                                    {step.desc}
+                                  </p>
+                                ) : null}
+                                {showCertificates ? (
+                                  <div className="mt-3 flex flex-wrap gap-1.5 md:gap-2">
                                     {certificates.map((item) => (
                                       <span
                                         key={item}
-                                        className="rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-primary"
+                                        className="rounded-full border border-primary/15 bg-primary/5 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-primary md:px-3 md:text-[11px]"
                                       >
                                         {item}
                                       </span>
@@ -327,7 +333,7 @@ function AboutPage() {
                   </div>
                 </div>
 
-                <div className="relative hidden min-h-[1120px] overflow-hidden rounded-[3rem] bg-transparent lg:block">
+                <div className="relative hidden min-h-[980px] overflow-hidden rounded-[3rem] bg-transparent lg:block">
                   <svg
                     viewBox="0 0 1200 1120"
                     className="absolute inset-0 h-full w-full"
@@ -374,8 +380,8 @@ function AboutPage() {
                     <div className="absolute left-1/2 top-2 h-0 w-0 -translate-x-1/2 border-b-[16px] border-l-[24px] border-b-transparent border-l-[#f04f4f]" />
                   </div>
 
-                  {supplierStory.map((step, index) => {
-                    const isLast = index === supplierStory.length - 1;
+                  {supplierStory.map((step) => {
+                    const showCertificates = "showCertificates" in step && step.showCertificates;
 
                     return (
                       <div
@@ -384,54 +390,53 @@ function AboutPage() {
                           "absolute -translate-x-1/2 -translate-y-1/2",
                           step.bubbleClass,
                         )}
-                      >
-                        <div
-                          className={cn(
-                            "relative flex h-[250px] w-[250px] flex-col items-center justify-center rounded-full border border-black/5 bg-[linear-gradient(180deg,rgba(255,255,255,0.97)_0%,rgba(243,241,238,0.92)_100%)] px-7 text-center shadow-[0_24px_45px_-28px_rgba(0,0,0,0.45)]",
-                            isLast ? "h-[340px] w-[340px] px-8" : "",
-                          )}
                         >
                           <div
                             className={cn(
-                              "absolute left-1/2 -translate-x-1/2",
-                              isLast ? "-top-4" : "-top-14",
+                              "relative flex h-[220px] w-[220px] flex-col items-center justify-center rounded-full border border-black/5 bg-[linear-gradient(180deg,rgba(255,255,255,0.97)_0%,rgba(243,241,238,0.92)_100%)] px-6 text-center shadow-[0_24px_45px_-28px_rgba(0,0,0,0.45)]",
+                              step.bubbleSizeClass,
+                            )}
+                          >
+                          <div
+                            className={cn(
+                              "absolute left-1/2 -translate-x-1/2 -top-12",
                             )}
                           >
                             <MapPin
-                              className="h-16 w-16 drop-shadow-[0_10px_12px_rgba(0,0,0,0.18)]"
+                              className={cn(
+                                "drop-shadow-[0_10px_12px_rgba(0,0,0,0.18)]",
+                                "h-16 w-16",
+                              )}
                               style={{ color: step.accent }}
                             />
                           </div>
 
                           <div
-                            className="text-[11px] font-semibold uppercase tracking-[0.24em]"
+                            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
                             style={{ color: step.accent }}
                           >
                             {step.step}
                           </div>
                           <div
                             className={cn(
-                              "mt-3 font-serif text-[1.9rem] leading-none text-foreground",
-                              isLast ? "text-[1.75rem]" : "",
+                              "mt-2.5 font-serif text-[1.65rem] leading-none text-foreground",
+                              step.bubbleSizeClass ? "text-[1.5rem] leading-[0.94]" : "",
                             )}
                           >
                             {step.title}
                           </div>
-                          <p
-                            className={cn(
-                              "mt-3 max-w-[16ch] text-[13px] leading-6 text-muted-foreground",
-                              isLast ? "max-w-[19ch] text-[12px] leading-5" : "",
-                            )}
-                          >
-                            {step.desc}
-                          </p>
+                          {!showCertificates ? (
+                            <p className="mt-2.5 max-w-[16ch] text-[12px] leading-5 text-muted-foreground">
+                              {step.desc}
+                            </p>
+                          ) : null}
 
-                          {isLast ? (
-                            <div className="mt-5 flex flex-wrap justify-center gap-2 px-2">
+                          {showCertificates ? (
+                            <div className="mt-4 flex flex-wrap justify-center gap-1.5 px-2">
                               {certificates.map((item) => (
                                 <span
                                   key={item}
-                                  className="rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.12em] text-primary"
+                                  className="rounded-full border border-primary/15 bg-primary/5 px-2.5 py-1 text-[8px] font-medium uppercase tracking-[0.1em] text-primary"
                                 >
                                   {item}
                                 </span>
