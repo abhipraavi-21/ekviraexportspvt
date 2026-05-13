@@ -318,60 +318,112 @@ const products: Product[] = [
   {
     icon: Bean,
     title: "Drinks & Spirits",
-    items: "Red Wine, White Wine, Sparkling Wine, Fruit Wine, Grape Winee", 
+    items: "Red Wine, White Wine, Sparkling Wine, Fruit Wine, Grape Wine",
     previewSummary: "Beverage and spirits-focused lines for trade and hospitality supply.",
     previewItems: [
       {
-        name: "Juices",
-        info: "Fruit-based drinks for retail and hospitality channels.",
-        image: makePreviewImage("Juices", "#8cc9da", "#eff9fd", "commodity"),
+        name: "Red Wine",
+        info: "",
+        image: makePreviewImage("Red Wine", "#8cc9da", "#eff9fd", "commodity"),
       },
       {
-        name: "Mixers",
-        info: "Bar and beverage mixers for commercial supply.",
-        image: makePreviewImage("Mixers", "#c68a45", "#fff4d8", "commodity"),
+        name: "White Wine",
+        info: "",
+        image: makePreviewImage("White Wine", "#c68a45", "#fff4d8", "commodity"),
       },
       {
-        name: "Spirits",
-        info: "Premium beverages for regulated trade channels.",
-        image: makePreviewImage("Spirits", "#8262c4", "#f1ebff", "commodity"),
+        name: "Sparkling Wine",
+        info: "",
+        image: makePreviewImage("Sparkling Wine", "#8262c4", "#f1ebff", "commodity"),
       },
       {
-        name: "Ready-to-Serve",
-        info: "Convenient drink formats suited to quick distribution.",
-        image: makePreviewImage("Ready-to-Serve", "#e0a57a", "#fff0e5", "commodity"),
+        name: "Fruit Wine",
+        info: "",
+        image: makePreviewImage("Fruit Wine", "#e0a57a", "#fff0e5", "commodity"),
+      },
+      {
+        name: "Grape Wine",
+        info: "",
+        image: makePreviewImage("Grape Wine", "#d59a51", "#fff4d3", "commodity"),
       },
     ],
     previewStyle: "carousel",
+    details: [
+      {
+        label: "Products",
+        items: [
+          "Red Wine",
+          "White Wine",
+          "Sparkling Wine",
+          "Fruit Wine",
+          "Grape Wine",
+        ],
+      },
+      {
+        label: "Sourced From",
+        items: ["Nashik", "Mumbai", "Thane"],
+      },
+      {
+        label: "Major Export Markets",
+        items: ["Singapore", "United Kingdom", "USA", "Mauritius"],
+      },
+    ],
+
+
   },
   {
     icon: Flame,
     title: "Textiles",
-    items: "Terry Towels (350–750 gsm, White & Colours — ideal for hotel industry), Napkins, Blankets, Cotton Dohar (Single & Double Bed), Bedsheets (Single & Double Bed)",
+    items: "Terry Towels, Napkins, Blankets, Cotton Dohar, Bedsheets",
     previewSummary: "Textile trade lines for apparel, home furnishing and industrial use.",
     previewItems: [
       {
-        name: "Fabric",
-        info: "Woven and knitted textiles for garment and home use.",
-        image: makePreviewImage("Fabric", "#d8b365", "#fff5d8", "grain"),
+        name: "Terry Towels",
+        info: "",
+        image: makePreviewImage("Terry Towels", "#d8b365", "#fff5d8", "grain"),
       },
       {
-        name: "Yarn",
-        info: "Consistent yarn supply for textile manufacturing.",
-        image: makePreviewImage("Yarn", "#8cc9da", "#eff9fd", "pulse"),
+        name: "Napkins",
+        info: "",
+        image: makePreviewImage("Napkins", "#8cc9da", "#eff9fd", "pulse"),
       },
       {
-        name: "Apparel",
-        info: "Finished textile goods ready for retail markets.",
-        image: makePreviewImage("Apparel", "#f2b94b", "#fff3cc", "grain"),
+        name: "Blankets",
+        info: "",
+        image: makePreviewImage("Blankets", "#f2b94b", "#fff3cc", "grain"),
       },
       {
-        name: "Home Textiles",
-        info: "Soft furnishing and household textile products.",
-        image: makePreviewImage("Home Textiles", "#8bb86b", "#eef8df", "grain"),
+        name: "Cotton Dohar",
+        info: "",
+        image: makePreviewImage("Cotton Dohar", "#8bb86b", "#eef8df", "grain"),
+      },
+      {
+        name: "Bedsheets",
+        info: "",
+        image: makePreviewImage("Bedsheets", "#c48139", "#fff0d9", "grain"),
       },
     ],
     previewStyle: "carousel",
+    details: [
+      {
+        label: "Products",
+        items: [
+          "Terry Towels (350-750 gsm, White & Colours - ideal for hotel industry)",
+          "Napkins",
+          "Blankets",
+          "Cotton Dohar (Single & Double Bed)",
+          "Bedsheets (Single & Double Bed)",
+        ],
+      },
+      {
+        label: "Sourced From",
+        items: ["Solapur", "Malegaon", "Ichalkaranji", "Pondicherry"],
+      },
+      {
+        label: "Major Export Markets",
+        items: ["UAE", "Saudi Arabia", "Egypt", "South Africa"],
+      },
+    ],
   },
   {
     icon: Carrot,
@@ -380,85 +432,144 @@ const products: Product[] = [
     previewSummary: "Beverage-focused supply for daily consumption and retail channels.",
     previewItems: [
       {
-        name: "Tea",
-        info: "Everyday beverage stock for retail and foodservice.",
-        image: makePreviewImage("Tea", "#c69b5f", "#fff2df", "fruit"),
+        name: "Soda Water",
+        info: "",
+        image: makePreviewImage("Soda Water", "#c69b5f", "#fff2df", "fruit"),
       },
       {
-        name: "Coffee",
-        info: "Roasted beverage lines for wholesale buyers.",
-        image: makePreviewImage("Coffee", "#8fc98a", "#eefbe9", "fruit"),
+        name: "Jeera Soda",
+        info: "",
+        image: makePreviewImage("Jeera Soda", "#8fc98a", "#eefbe9", "fruit"),
       },
       {
-        name: "Milk Drinks",
-        info: "Convenient packaged drinks for broad market demand.",
-        image: makePreviewImage("Milk Drinks", "#e0a57a", "#fff0e5", "fruit"),
+        name: "Lemon Soda",
+        info: "",
+        image: makePreviewImage("Lemon Soda", "#e0a57a", "#fff0e5", "fruit"),
       },
       {
-        name: "Functional Beverages",
-        info: "Specialty beverage lines for modern consumer demand.",
-        image: makePreviewImage("Functional Beverages", "#d59a51", "#fff4d3", "fruit"),
+        name: "Soft Drinks",
+        info: "",
+        image: makePreviewImage("Soft Drinks", "#d59a51", "#fff4d3", "fruit"),
+      },
+      {
+        name: "Packaged Drinking Water",
+        info: "",
+        image: makePreviewImage("Packaged Drinking Water", "#6f8b4d", "#eff6df", "fruit"),
       },
     ],
     previewStyle: "carousel",
+    details: [
+      {
+        label: "Products",
+        items: [
+          "Soda Water",
+          "Jeera Soda",
+          "Lemon Soda",
+          "Soft Drinks",
+          "Packaged Drinking Water",
+        ],
+      },
+      {
+        label: "Sourced From",
+        items: ["Nashik", "Mumbai", "Thane"],
+      },
+      {
+        label: "Major Export Markets",
+        items: ["UAE", "Bahrain", "Kuwait", "Oman"],
+      },
+    ],
   },
   {
     icon: Apple,
     title: "Engineering Goods",
-    items: "Available on enquiry — industrial components, hardware, and allied engineering products sourced from Maharashtra's manufacturing belt",
+    items: "Available on enquiry - industrial components, hardware, and allied engineering products sourced from Maharashtra's manufacturing belt",
     previewSummary: "Industrial and hardware lines for fabrication, assembly and repair.",
     previewItems: [
       {
-        name: "Components",
-        info: "Precision parts for industrial and manufacturing use.",
-        image: makePreviewImage("Components", "#6f8b4d", "#eff6df", "commodity"),
+        name: "Industrial Components",
+        info: "",
+        image: makePreviewImage("Industrial Components", "#6f8b4d", "#eff6df", "commodity"),
       },
       {
-        name: "Tools",
-        info: "Workshop and maintenance tools for trade buyers.",
-        image: makePreviewImage("Tools", "#6f6f8f", "#f0f0fb", "commodity"),
+        name: "Hardware",
+        info: "",
+        image: makePreviewImage("Hardware", "#6f6f8f", "#f0f0fb", "commodity"),
       },
       {
-        name: "Machinery Parts",
-        info: "Critical parts for machines, repair and replacement.",
-        image: makePreviewImage("Machinery Parts", "#c48139", "#fff0d9", "commodity"),
+        name: "Allied Engineering",
+        info: "",
+        image: makePreviewImage("Allied Engineering", "#c48139", "#fff0d9", "commodity"),
       },
       {
-        name: "Fasteners",
-        info: "Hardware essentials for assembly and construction.",
-        image: makePreviewImage("Fasteners", "#8a7742", "#f8f4d9", "commodity"),
+        name: "Maharashtra Belt",
+        info: "",
+        image: makePreviewImage("Maharashtra Belt", "#8a7742", "#f8f4d9", "commodity"),
       },
     ],
     previewStyle: "carousel",
+    details: [
+      {
+        label: "Products",
+        items: [
+          "Available on enquiry - industrial components, hardware, and allied engineering products sourced from Maharashtra's manufacturing belt.",
+        ],
+      },
+      {
+        label: "Sourced From",
+        items: ["Pune", "Nashik", "Aurangabad"],
+      },
+      {
+        label: "Major Export Markets",
+        items: ["UAE", "Kuwait", "Germany", "USA"],
+      },
+    ],
   },
   {
     icon: Package,
     title: "Seasonal Products",
-    items: "Ganpati / Ganapati Murtis (Eco-friendly & Traditional), Festive Decorative Items, Puja Essentials & Cultural Artefacts",
+    items: "Ganpati / Ganapati Murtis, Festive Decorative Items, Puja Essentials, Cultural Artefacts",
     previewSummary: "Season-linked product lines for holidays, events and special demand peaks.",
     previewItems: [
       {
-        name: "Festival Goods",
-        info: "Seasonal stock for festive retail and event supply.",
-        image: makePreviewImage("Festival Goods", "#c48139", "#fff0d9", "commodity"),
+        name: "Ganpati Murtis",
+        info: "",
+        image: makePreviewImage("Ganpati Murtis", "#c48139", "#fff0d9", "commodity"),
       },
       {
-        name: "Gifting",
-        info: "Special packs and products suited to gifting demand.",
-        image: makePreviewImage("Gifting", "#8a7742", "#f8f4d9", "commodity"),
+        name: "Festive Decorative Items",
+        info: "",
+        image: makePreviewImage("Festive Decorative Items", "#8a7742", "#f8f4d9", "commodity"),
       },
       {
-        name: "Decor",
-        info: "Seasonal decorative items for retail and event use.",
-        image: makePreviewImage("Decor", "#6f8b4d", "#eff6df", "commodity"),
+        name: "Puja Essentials",
+        info: "",
+        image: makePreviewImage("Puja Essentials", "#6f8b4d", "#eff6df", "commodity"),
       },
       {
-        name: "Seasonal Demand",
-        info: "Flexible supply for time-sensitive order windows.",
-        image: makePreviewImage("Seasonal Demand", "#6f6f8f", "#f0f0fb", "commodity"),
+        name: "Cultural Artefacts",
+        info: "",
+        image: makePreviewImage("Cultural Artefacts", "#6f6f8f", "#f0f0fb", "commodity"),
       },
     ],
     previewStyle: "carousel",
+    details: [
+      {
+        label: "Products",
+        items: [
+          "Ganpati / Ganapati Murtis (Eco-friendly & Traditional)",
+          "Festive Decorative Items",
+          "Puja Essentials & Cultural Artefacts",
+        ],
+      },
+      {
+        label: "Sourced From",
+        items: ["Pen (Raigad)", "Pune", "Mumbai"],
+      },
+      {
+        label: "Major Export Markets",
+        items: ["Australia", "USA", "United Kingdom", "Canada"],
+      },
+    ],
   },
 ] as const;
 
