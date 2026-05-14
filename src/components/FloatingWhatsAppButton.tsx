@@ -75,15 +75,7 @@ export function FloatingWhatsAppButton() {
               : "pointer-events-none translate-y-2 scale-95 opacity-0",
           )}
         >
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={closeMenu}
-            className={optionClassName}
-          >
-            General
-          </a>
+        
           <a
             href={supplierWhatsappLink}
             target="_blank"

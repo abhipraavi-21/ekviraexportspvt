@@ -1,7 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Apple, Bean, Carrot, Flame, Package, Wheat } from "lucide-react";
+import { Apple, Bean, Carrot, Flame, Package, Sparkles, Wheat } from "lucide-react";
 import productsBreadcrumbBanner from "@/assets/products-breadcrumb-banner.jpg";
+import vegFruitTamarindImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM.jpeg";
+import vegFruitMuskmelonImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (1).jpeg";
+import vegFruitDragonFruitImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (2).jpeg";
+import vegFruitWatermelonImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (3).jpeg";
+import vegFruitGuavaImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (4).jpeg";
+import vegFruitCustardAppleImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (5).jpeg";
+import vegFruitPomegranateImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (6).jpeg";
+import vegFruitMangoImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (7).jpeg";
+import vegFruitBananaImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (8).jpeg";
+import vegFruitCabbageImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.43 PM (9).jpeg";
+import vegFruitDrumstickImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.44 PM.jpeg";
+import vegFruitLemonImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.44 PM (1).jpeg";
+import vegFruitOnionImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.44 PM (2).jpeg";
+import vegFruitGarlicImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.44 PM (3).jpeg";
+import vegFruitGreenChilliImage from "@/assets/product-page-images/Vegetables & Fruits/WhatsApp Image 2026-05-14 at 3.37.44 PM (4).jpeg";
+import vegFruitGrapesImage from "@/assets/product-page-images/Vegetables & Fruits/grapes.png";
+import drinksSpiritsGrapeWineImage from "@/assets/product-page-images/Drinks-Spirits/WhatsApp Image 2026-05-14 at 3.41.49 PM.jpeg";
+import drinksSpiritsFruitWineImage from "@/assets/product-page-images/Drinks-Spirits/WhatsApp Image 2026-05-14 at 3.41.49 PM (1).jpeg";
+import drinksSpiritsSparklingWineImage from "@/assets/product-page-images/Drinks-Spirits/WhatsApp Image 2026-05-14 at 3.41.49 PM (2).jpeg";
+import drinksSpiritsWhiteWineImage from "@/assets/product-page-images/Drinks-Spirits/WhatsApp Image 2026-05-14 at 3.41.50 PM.jpeg";
+import drinksSpiritsRedWineImage from "@/assets/product-page-images/Drinks-Spirits/WhatsApp Image 2026-05-14 at 3.41.50 PM (1).jpeg";
+import textilesTerryTowelsImage from "@/assets/product-page-images/Textiles/WhatsApp Image 2026-05-14 at 4.00.38 PM.jpeg";
+import textilesBlanketsImage from "@/assets/product-page-images/Textiles/WhatsApp Image 2026-05-14 at 4.00.38 PM (1).jpeg";
+import textilesBedsheetsImage from "@/assets/product-page-images/Textiles/WhatsApp Image 2026-05-14 at 4.00.38 PM (2).jpeg";
+import textilesCottonDoharImage from "@/assets/product-page-images/Textiles/WhatsApp Image 2026-05-14 at 4.00.38 PM (3).jpeg";
+import textilesNapkinsImage from "@/assets/product-page-images/Textiles/WhatsApp Image 2026-05-14 at 4.00.38 PM (4).jpeg";
+import beveragesGrapeWineImage from "@/assets/product-page-images/Beverages/WhatsApp Image 2026-05-14 at 3.51.19 PM.jpeg";
+import beveragesFruitWineImage from "@/assets/product-page-images/Beverages/WhatsApp Image 2026-05-14 at 3.51.19 PM (1).jpeg";
+import beveragesSparklingWineImage from "@/assets/product-page-images/Beverages/WhatsApp Image 2026-05-14 at 3.51.19 PM (2).jpeg";
+import beveragesWhiteWineImage from "@/assets/product-page-images/Beverages/WhatsApp Image 2026-05-14 at 3.51.19 PM (3).jpeg";
+import beveragesRedWineImage from "@/assets/product-page-images/Beverages/WhatsApp Image 2026-05-14 at 3.51.19 PM (4).jpeg";
+import engineeringGearShaftImage from "@/assets/product-page-images/Engineering Goods/WhatsApp Image 2026-05-14 at 4.29.24 PM.jpeg";
+import engineeringBearingHousingImage from "@/assets/product-page-images/Engineering Goods/WhatsApp Image 2026-05-14 at 4.29.24 PM (1).jpeg";
+import engineeringGearImage from "@/assets/product-page-images/Engineering Goods/WhatsApp Image 2026-05-14 at 4.29.25 PM.jpeg";
+import engineeringBearingImage from "@/assets/product-page-images/Engineering Goods/WhatsApp Image 2026-05-14 at 4.29.25 PM (2).jpeg";
+import seasonalPoojaItemsImage from "@/assets/product-page-images/Seasonal Products/WhatsApp Image 2026-05-14 at 4.41.47 PM.jpeg";
+import seasonalGaneshImage from "@/assets/product-page-images/Seasonal Products/WhatsApp Image 2026-05-14 at 4.41.47 PM (1).jpeg";
+import seasonalDecorImage from "@/assets/product-page-images/Seasonal Products/WhatsApp Image 2026-05-14 at 4.41.47 PM (2).jpeg";
 import { PageBreadcrumbHero } from "@/components/PageBreadcrumbHero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -39,6 +77,7 @@ type Product = {
   previewItems: PreviewItem[];
   previewStyle?: "grid" | "carousel";
   details?: DetailSection[];
+  detailItemLayout?: "stack" | "grid";
 };
 
 function chunkPreviewItems(items: PreviewItem[], size: number) {
@@ -56,230 +95,106 @@ function splitProductItems(items: string) {
     .filter(Boolean);
 }
 
-function svgDataUri(svg: string) {
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-}
+const honeyPreviewImageModules = import.meta.glob(
+  "../assets/product-page-images/Honey/*.{jpeg,jpg,png}",
+  {
+    eager: true,
+    import: "default",
+  },
+) as Record<string, string>;
 
-function makePreviewImage(
-  title: string,
-  accent: string,
-  base: string,
-  motif: "grain" | "pulse" | "spice" | "veg" | "fruit" | "commodity",
-) {
-  const titleSafe = title.replace(/&/g, "&amp;");
-
-  const motifMarkup =
-    motif === "grain"
-      ? `
-        <g stroke="${accent}" stroke-linecap="round" fill="none" opacity="0.92">
-          <path d="M170 300 C160 250, 160 210, 168 150" stroke-width="7" />
-          <path d="M218 302 C225 254, 232 214, 236 140" stroke-width="7" />
-          <path d="M272 304 C281 255, 286 215, 292 150" stroke-width="7" />
-        </g>
-        <g fill="${accent}" opacity="0.96">
-          <ellipse cx="158" cy="238" rx="12" ry="7" transform="rotate(-28 158 238)" />
-          <ellipse cx="167" cy="210" rx="12" ry="7" transform="rotate(-28 167 210)" />
-          <ellipse cx="175" cy="182" rx="12" ry="7" transform="rotate(-28 175 182)" />
-          <ellipse cx="184" cy="154" rx="12" ry="7" transform="rotate(-28 184 154)" />
-          <ellipse cx="204" cy="247" rx="12" ry="7" transform="rotate(26 204 247)" />
-          <ellipse cx="214" cy="219" rx="12" ry="7" transform="rotate(26 214 219)" />
-          <ellipse cx="223" cy="191" rx="12" ry="7" transform="rotate(26 223 191)" />
-          <ellipse cx="232" cy="163" rx="12" ry="7" transform="rotate(26 232 163)" />
-          <ellipse cx="266" cy="238" rx="12" ry="7" transform="rotate(-22 266 238)" />
-          <ellipse cx="275" cy="210" rx="12" ry="7" transform="rotate(-22 275 210)" />
-          <ellipse cx="284" cy="182" rx="12" ry="7" transform="rotate(-22 284 182)" />
-          <ellipse cx="293" cy="154" rx="12" ry="7" transform="rotate(-22 293 154)" />
-        </g>
-      `
-      : motif === "pulse"
-        ? `
-          <g fill="${accent}" opacity="0.92">
-            <path d="M150 224 C130 198, 132 165, 160 151 C188 137, 218 151, 230 179 C242 208, 224 244, 196 250 C174 255, 160 242, 150 224 Z" />
-            <path d="M228 214 C212 194, 214 167, 239 154 C264 142, 291 154, 302 178 C312 202, 298 231, 274 239 C254 246, 240 232, 228 214 Z" />
-          </g>
-          <g fill="${base}" opacity="0.85">
-            <ellipse cx="164" cy="188" rx="7" ry="18" transform="rotate(-20 164 188)" />
-            <ellipse cx="176" cy="173" rx="7" ry="18" transform="rotate(-10 176 173)" />
-            <ellipse cx="189" cy="164" rx="7" ry="18" transform="rotate(8 189 164)" />
-            <ellipse cx="244" cy="184" rx="7" ry="18" transform="rotate(-20 244 184)" />
-            <ellipse cx="256" cy="172" rx="7" ry="18" transform="rotate(-10 256 172)" />
-            <ellipse cx="269" cy="164" rx="7" ry="18" transform="rotate(8 269 164)" />
-          </g>
-        `
-        : motif === "spice"
-          ? `
-            <g fill="${accent}" opacity="0.92">
-              <circle cx="170" cy="192" r="18" />
-              <circle cx="220" cy="156" r="14" />
-              <circle cx="266" cy="184" r="16" />
-              <circle cx="306" cy="152" r="12" />
-            </g>
-            <g fill="${base}" opacity="0.72">
-              <path d="M154 236 L224 128" stroke="${base}" stroke-width="7" stroke-linecap="round" fill="none" />
-              <path d="M202 244 L282 138" stroke="${base}" stroke-width="7" stroke-linecap="round" fill="none" />
-              <path d="M252 240 L320 126" stroke="${base}" stroke-width="7" stroke-linecap="round" fill="none" />
-            </g>
-            <g fill="${accent}" opacity="0.8">
-              <circle cx="178" cy="212" r="9" />
-              <circle cx="194" cy="190" r="9" />
-              <circle cx="236" cy="195" r="8" />
-              <circle cx="252" cy="173" r="8" />
-              <circle cx="284" cy="204" r="8" />
-              <circle cx="300" cy="181" r="8" />
-            </g>
-          `
-          : motif === "veg"
-            ? `
-              <g fill="${accent}" opacity="0.92">
-                <path d="M150 222 C150 187, 173 160, 203 160 C233 160, 256 186, 256 222 C256 258, 233 286, 203 286 C173 286, 150 258, 150 222 Z" />
-                <path d="M232 216 C232 184, 255 160, 285 160 C315 160, 338 184, 338 216 C338 248, 315 272, 285 272 C255 272, 232 248, 232 216 Z" />
-              </g>
-              <g fill="${base}" opacity="0.86">
-                <rect x="195" y="130" width="10" height="72" rx="5" transform="rotate(-18 195 130)" />
-                <rect x="282" y="128" width="10" height="72" rx="5" transform="rotate(18 282 128)" />
-                <circle cx="203" cy="222" r="18" />
-                <circle cx="286" cy="216" r="18" />
-              </g>
-            `
-            : motif === "fruit"
-              ? `
-                <g fill="${accent}" opacity="0.92">
-                  <circle cx="176" cy="226" r="36" />
-                  <circle cx="244" cy="176" r="34" />
-                  <circle cx="304" cy="230" r="32" />
-                </g>
-                <g fill="${base}" opacity="0.78">
-                  <path d="M170 186 C168 168, 180 154, 198 150" stroke="${base}" stroke-width="8" stroke-linecap="round" fill="none" />
-                  <path d="M240 145 C242 128, 254 118, 270 114" stroke="${base}" stroke-width="8" stroke-linecap="round" fill="none" />
-                  <path d="M302 196 C304 180, 316 170, 332 166" stroke="${base}" stroke-width="8" stroke-linecap="round" fill="none" />
-                  <circle cx="184" cy="224" r="10" />
-                  <circle cx="252" cy="174" r="10" />
-                  <circle cx="312" cy="230" r="10" />
-                </g>
-              `
-              : `
-                <g fill="${accent}" opacity="0.92">
-                  <rect x="152" y="158" width="124" height="84" rx="24" />
-                  <rect x="244" y="132" width="126" height="78" rx="20" />
-                </g>
-                <g fill="${base}" opacity="0.72">
-                  <circle cx="186" cy="198" r="13" />
-                  <circle cx="224" cy="176" r="11" />
-                  <circle cx="280" cy="182" r="12" />
-                  <circle cx="318" cy="158" r="10" />
-                </g>
-              `;
-
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="${titleSafe}">
-      <defs>
-        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${base}" />
-          <stop offset="100%" stop-color="#ffffff" />
-        </linearGradient>
-        <radialGradient id="glow" cx="50%" cy="40%" r="70%">
-          <stop offset="0%" stop-color="${accent}" stop-opacity="0.45" />
-          <stop offset="100%" stop-color="${accent}" stop-opacity="0" />
-        </radialGradient>
-      </defs>
-      <rect width="640" height="420" fill="url(#bg)" />
-      <circle cx="500" cy="92" r="148" fill="url(#glow)" />
-      <circle cx="128" cy="324" r="126" fill="${accent}" opacity="0.12" />
-      <path d="M 0 316 C 96 282, 156 280, 248 316 C 334 350, 404 352, 640 286 L 640 420 L 0 420 Z" fill="${accent}" opacity="0.12" />
-      ${motifMarkup}
-      <rect x="38" y="32" width="188" height="38" rx="19" fill="rgba(255,255,255,0.84)" />
-      <text x="52" y="58" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#3b2a14">${titleSafe}</text>
-    </svg>`;
-
-  return svgDataUri(svg);
-}
+const honeyPreviewImages = Object.entries(honeyPreviewImageModules)
+  .sort(([left], [right]) => left.localeCompare(right))
+  .map(([, image]) => image);
 
 const products: Product[] = [
   {
     icon: Apple,
     title: "Vegetables & Fruits",
-    items: "Green Chilli, Onion, Lemon, Drumstick, Garlic, Cabbage, Banana, Mango, Pomegranate, Grapes, Custard Apple, Guava, Dragon Fruit, Watermelon, Muskmelon, Tamarind",
-    previewSummary: "Fresh produce lines sourced across India's key growing belts for export buyers.",
+    items:
+      "Green Chilli, Onion, Lemon, Drumstick, Garlic, Cabbage, Banana, Mango, Pomegranate, Grapes, Custard Apple, Guava, Dragon Fruit, Watermelon, Muskmelon, Tamarind",
+    previewSummary:
+      "Fresh produce lines sourced across India's key growing belts for export buyers.",
     previewItems: [
       {
         name: "Green Chilli",
         info: "",
-        image: makePreviewImage("Green Chilli", "#79b85d", "#eef8df", "veg"),
+        image: vegFruitGreenChilliImage,
       },
       {
         name: "Onion",
         info: "",
-        image: makePreviewImage("Onion", "#c48f58", "#fff3df", "veg"),
+        image: vegFruitOnionImage,
       },
       {
         name: "Lemon",
         info: "",
-        image: makePreviewImage("Lemon", "#e4c247", "#fff8d5", "fruit"),
+        image: vegFruitLemonImage,
       },
       {
         name: "Drumstick",
         info: "",
-        image: makePreviewImage("Drumstick", "#7aa95a", "#edf9df", "veg"),
+        image: vegFruitDrumstickImage,
       },
       {
         name: "Garlic",
         info: "",
-        image: makePreviewImage("Garlic", "#d9c8a2", "#fbf5e7", "veg"),
+        image: vegFruitGarlicImage,
       },
       {
         name: "Cabbage",
         info: "",
-        image: makePreviewImage("Cabbage", "#78b56d", "#edf8e8", "veg"),
+        image: vegFruitCabbageImage,
       },
       {
         name: "Banana",
         info: "",
-        image: makePreviewImage("Banana", "#e2c34f", "#fff8df", "fruit"),
+        image: vegFruitBananaImage,
       },
       {
         name: "Mango",
         info: "",
-        image: makePreviewImage("Mango", "#e59d3d", "#fff2d0", "fruit"),
+        image: vegFruitMangoImage,
       },
       {
         name: "Pomegranate",
         info: "",
-        image: makePreviewImage("Pomegranate", "#c84c5a", "#fff1f4", "fruit"),
+        image: vegFruitPomegranateImage,
       },
       {
         name: "Grapes",
         info: "",
-        image: makePreviewImage("Grapes", "#8b67ca", "#f2ecff", "fruit"),
+        image: vegFruitGrapesImage,
       },
       {
         name: "Custard Apple",
         info: "",
-        image: makePreviewImage("Custard Apple", "#cfa85e", "#fff4de", "fruit"),
+        image: vegFruitCustardAppleImage,
       },
       {
         name: "Guava",
         info: "",
-        image: makePreviewImage("Guava", "#73b47a", "#edf8ea", "fruit"),
+        image: vegFruitGuavaImage,
       },
       {
         name: "Dragon Fruit",
         info: "",
-        image: makePreviewImage("Dragon Fruit", "#d35f84", "#fff0f5", "fruit"),
+        image: vegFruitDragonFruitImage,
       },
       {
         name: "Watermelon",
         info: "",
-        image: makePreviewImage("Watermelon", "#da6b5a", "#fff0ec", "fruit"),
+        image: vegFruitWatermelonImage,
       },
       {
         name: "Muskmelon",
         info: "",
-        image: makePreviewImage("Muskmelon", "#d8ae58", "#fff8df", "fruit"),
+        image: vegFruitMuskmelonImage,
       },
       {
         name: "Tamarind",
         info: "",
-        image: makePreviewImage("Tamarind", "#9b7458", "#f7efe4", "veg"),
+        image: vegFruitTamarindImage,
       },
     ],
     previewStyle: "carousel",
@@ -307,7 +222,16 @@ const products: Product[] = [
       },
       {
         label: "Sourced From",
-        items: ["Nashik", "Jalgaon", "Dhule", "Nandurbar", "Ratnagiri", "Solapur", "Satara", "Kolhapur"],
+        items: [
+          "Nashik",
+          "Jalgaon",
+          "Dhule",
+          "Nandurbar",
+          "Ratnagiri",
+          "Solapur",
+          "Satara",
+          "Kolhapur",
+        ],
       },
       {
         label: "Major Export Markets",
@@ -324,40 +248,34 @@ const products: Product[] = [
       {
         name: "Red Wine",
         info: "",
-        image: makePreviewImage("Red Wine", "#8cc9da", "#eff9fd", "commodity"),
+        image: drinksSpiritsRedWineImage,
       },
       {
         name: "White Wine",
         info: "",
-        image: makePreviewImage("White Wine", "#c68a45", "#fff4d8", "commodity"),
+        image: drinksSpiritsWhiteWineImage,
       },
       {
         name: "Sparkling Wine",
         info: "",
-        image: makePreviewImage("Sparkling Wine", "#8262c4", "#f1ebff", "commodity"),
+        image: drinksSpiritsSparklingWineImage,
       },
       {
         name: "Fruit Wine",
         info: "",
-        image: makePreviewImage("Fruit Wine", "#e0a57a", "#fff0e5", "commodity"),
+        image: drinksSpiritsFruitWineImage,
       },
       {
         name: "Grape Wine",
         info: "",
-        image: makePreviewImage("Grape Wine", "#d59a51", "#fff4d3", "commodity"),
+        image: drinksSpiritsGrapeWineImage,
       },
     ],
     previewStyle: "carousel",
     details: [
       {
         label: "Products",
-        items: [
-          "Red Wine",
-          "White Wine",
-          "Sparkling Wine",
-          "Fruit Wine",
-          "Grape Wine",
-        ],
+        items: ["Red Wine", "White Wine", "Sparkling Wine", "Fruit Wine", "Grape Wine"],
       },
       {
         label: "Sourced From",
@@ -368,8 +286,6 @@ const products: Product[] = [
         items: ["Singapore", "United Kingdom", "USA", "Mauritius"],
       },
     ],
-
-
   },
   {
     icon: Flame,
@@ -380,27 +296,27 @@ const products: Product[] = [
       {
         name: "Terry Towels",
         info: "",
-        image: makePreviewImage("Terry Towels", "#d8b365", "#fff5d8", "grain"),
+        image: textilesTerryTowelsImage,
       },
       {
         name: "Napkins",
         info: "",
-        image: makePreviewImage("Napkins", "#8cc9da", "#eff9fd", "pulse"),
+        image: textilesNapkinsImage,
       },
       {
         name: "Blankets",
         info: "",
-        image: makePreviewImage("Blankets", "#f2b94b", "#fff3cc", "grain"),
+        image: textilesBlanketsImage,
       },
       {
         name: "Cotton Dohar",
         info: "",
-        image: makePreviewImage("Cotton Dohar", "#8bb86b", "#eef8df", "grain"),
+        image: textilesCottonDoharImage,
       },
       {
         name: "Bedsheets",
         info: "",
-        image: makePreviewImage("Bedsheets", "#c48139", "#fff0d9", "grain"),
+        image: textilesBedsheetsImage,
       },
     ],
     previewStyle: "carousel",
@@ -434,40 +350,34 @@ const products: Product[] = [
       {
         name: "Soda Water",
         info: "",
-        image: makePreviewImage("Soda Water", "#c69b5f", "#fff2df", "fruit"),
+        image: beveragesGrapeWineImage,
       },
       {
         name: "Jeera Soda",
         info: "",
-        image: makePreviewImage("Jeera Soda", "#8fc98a", "#eefbe9", "fruit"),
+        image: beveragesFruitWineImage,
       },
       {
         name: "Lemon Soda",
         info: "",
-        image: makePreviewImage("Lemon Soda", "#e0a57a", "#fff0e5", "fruit"),
+        image: beveragesSparklingWineImage,
       },
       {
         name: "Soft Drinks",
         info: "",
-        image: makePreviewImage("Soft Drinks", "#d59a51", "#fff4d3", "fruit"),
+        image: beveragesWhiteWineImage,
       },
       {
         name: "Packaged Drinking Water",
         info: "",
-        image: makePreviewImage("Packaged Drinking Water", "#6f8b4d", "#eff6df", "fruit"),
+        image: beveragesRedWineImage,
       },
     ],
     previewStyle: "carousel",
     details: [
       {
         label: "Products",
-        items: [
-          "Soda Water",
-          "Jeera Soda",
-          "Lemon Soda",
-          "Soft Drinks",
-          "Packaged Drinking Water",
-        ],
+        items: ["Soda Water", "Jeera Soda", "Lemon Soda", "Soft Drinks", "Packaged Drinking Water"],
       },
       {
         label: "Sourced From",
@@ -482,28 +392,29 @@ const products: Product[] = [
   {
     icon: Apple,
     title: "Engineering Goods",
-    items: "Available on enquiry - industrial components, hardware, and allied engineering products sourced from Maharashtra's manufacturing belt",
+    items:
+      "Available on enquiry - industrial components, hardware, and allied engineering products sourced from Maharashtra's manufacturing belt",
     previewSummary: "Industrial and hardware lines for fabrication, assembly and repair.",
     previewItems: [
       {
         name: "Industrial Components",
         info: "",
-        image: makePreviewImage("Industrial Components", "#6f8b4d", "#eff6df", "commodity"),
+        image: engineeringGearShaftImage,
       },
       {
         name: "Hardware",
         info: "",
-        image: makePreviewImage("Hardware", "#6f6f8f", "#f0f0fb", "commodity"),
+        image: engineeringBearingImage,
       },
       {
         name: "Allied Engineering",
         info: "",
-        image: makePreviewImage("Allied Engineering", "#c48139", "#fff0d9", "commodity"),
+        image: engineeringGearImage,
       },
       {
         name: "Maharashtra Belt",
         info: "",
-        image: makePreviewImage("Maharashtra Belt", "#8a7742", "#f8f4d9", "commodity"),
+        image: engineeringBearingHousingImage,
       },
     ],
     previewStyle: "carousel",
@@ -527,28 +438,29 @@ const products: Product[] = [
   {
     icon: Package,
     title: "Seasonal Products",
-    items: "Ganpati / Ganapati Murtis, Festive Decorative Items, Puja Essentials, Cultural Artefacts",
+    items:
+      "Ganpati / Ganapati Murtis, Festive Decorative Items, Puja Essentials, Cultural Artefacts",
     previewSummary: "Season-linked product lines for holidays, events and special demand peaks.",
     previewItems: [
       {
         name: "Ganpati Murtis",
         info: "",
-        image: makePreviewImage("Ganpati Murtis", "#c48139", "#fff0d9", "commodity"),
+        image: seasonalPoojaItemsImage,
       },
       {
         name: "Festive Decorative Items",
         info: "",
-        image: makePreviewImage("Festive Decorative Items", "#8a7742", "#f8f4d9", "commodity"),
+        image: seasonalDecorImage,
       },
       {
         name: "Puja Essentials",
         info: "",
-        image: makePreviewImage("Puja Essentials", "#6f8b4d", "#eff6df", "commodity"),
+        image: seasonalGaneshImage,
       },
       {
         name: "Cultural Artefacts",
         info: "",
-        image: makePreviewImage("Cultural Artefacts", "#6f6f8f", "#f0f0fb", "commodity"),
+        image: seasonalPoojaItemsImage,
       },
     ],
     previewStyle: "carousel",
@@ -571,6 +483,81 @@ const products: Product[] = [
       },
     ],
   },
+  {
+    icon: Sparkles,
+    title: "Honey",
+    items:
+      "Floral, infused, and specialty honey varietals sourced from Indian bee belts for export-ready supply.",
+    previewSummary:
+      "A broad honey range spanning floral, infused, and specialty varietals for domestic and export trade.",
+    previewItems: [
+      "Leechi Flora Honey",
+      "Coffee Infused Honey",
+      "Lemon Infused Honey",
+      "Vantulsi Flora Honey",
+      "Karanj Flora Honey",
+      "Jamun Flora Honey",
+      "Ajwain Flora Honey",
+      "Cinemyon Infused Honey",
+      "Multi Flora Honey",
+      "Saunf Flora Honey",
+      "Acacia Flora Honey",
+      "Sandalwood Infused Honey",
+      "Berry Flora Honey",
+      "Chocolate Infused Honey",
+      "Sheesham Flora Honey",
+      "Moringa Flora Honey",
+      "ALeechiora Honey",
+      "Mustard Flora Honey",
+    ].map((name, index) => ({
+      name,
+      info: "",
+      image: honeyPreviewImages[index] ?? honeyPreviewImages[0],
+    })),
+    previewStyle: "carousel",
+    detailItemLayout: "grid",
+    details: [
+      {
+        label: "Products",
+        items: [
+          "Karanj Flora Honey",
+          "Van Tulsi Flora Honey",
+          "Lemon Infused Honey",
+          "Coffee Infused Honey",
+          "Jamun Flora Honey",
+          "Ajwain Flora Honey",
+          "Cinnamon Infused Honey",
+          "Multi Flora Honey",
+          "Saunf Flora Honey",
+          "Acacia Flora Honey",
+          "Sandalwood Infused Honey",
+          "Berry Flora Honey",
+          "Chocolate Infused Honey",
+          "Sheesham Flora Honey",
+          "Moringa Flora Honey",
+          "Litchi Flora Honey",
+          "Mustard Flora Honey",
+        ],
+      },
+      {
+        label: "Sourced From",
+        items: [
+          "Pune",
+          "Nashik",
+          "Dhule",
+          "Uttarakhand",
+          "Kashmir",
+          "Jharkhand",
+          "Bihar",
+          "Gujarat",
+        ],
+      },
+      {
+        label: "Major Export Markets",
+        items: ["USA", "UAE", "Saudi Arabia", "Canada", "Bangladesh"],
+      },
+    ],
+  },
 ] as const;
 
 function ProductsPage() {
@@ -579,13 +566,12 @@ function ProductsPage() {
 
   const activeCarouselPages =
     activeProduct.previewStyle !== "grid" ? chunkPreviewItems(activeProduct.previewItems, 2) : [];
-  const activeProductDetails =
-    activeProduct.details ?? [
-      {
-        label: "Products",
-        items: splitProductItems(activeProduct.items),
-      },
-    ];
+  const activeProductDetails = activeProduct.details ?? [
+    {
+      label: "Products",
+      items: splitProductItems(activeProduct.items),
+    },
+  ];
 
   useEffect(() => {
     setCarouselPage(0);
@@ -645,16 +631,12 @@ function ProductsPage() {
                   </span>
 
                   <div className="min-w-0 flex-1">
-                    <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
-                      Category
-                    </div>
+                    
                     <h3 className="mt-2 font-serif text-2xl text-foreground">{p.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">{p.items}</p>
                   </div>
 
-                  <span className="hidden rounded-full border border-border/70 bg-secondary/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground lg:inline-flex">
-                    Hover to preview
-                  </span>
+                 
                 </button>
               ))}
             </div>
@@ -663,9 +645,9 @@ function ProductsPage() {
               <div className="rounded-[2.2rem] border border-border/70 bg-card p-5 soft-shadow-lg md:p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-secondary/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    {/* <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-secondary/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
                       Preview
-                    </span>
+                    </span> */}
                     <h3 className="mt-4 font-serif text-3xl leading-tight text-foreground">
                       {activeProduct.title}
                     </h3>
@@ -721,11 +703,23 @@ function ProductsPage() {
                               <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-primary/70">
                                 {section.label}
                               </div>
-                              <div className="mt-3 flex flex-wrap gap-2">
+                              <div
+                                className={`mt-3 ${
+                                  activeProduct.detailItemLayout === "grid" &&
+                                  section.label === "Products"
+                                    ? "grid grid-cols-1 gap-2 sm:grid-cols-2"
+                                    : "flex flex-wrap gap-2"
+                                }`}
+                              >
                                 {section.items.map((item) => (
                                   <span
                                     key={item}
-                                    className="w-full rounded-full border border-border/70 bg-secondary/50 px-3 py-1 text-[12px] text-foreground/80"
+                                    className={`${
+                                      activeProduct.detailItemLayout === "grid" &&
+                                      section.label === "Products"
+                                        ? "w-full rounded-2xl border border-border/70 bg-secondary/50 px-3 py-2 text-[12px] leading-5 text-foreground/80"
+                                        : "w-full rounded-full border border-border/70 bg-secondary/50 px-3 py-1 text-[12px] text-foreground/80"
+                                    }`}
                                   >
                                     {item}
                                   </span>
@@ -746,11 +740,15 @@ function ProductsPage() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="h-36 w-full object-cover object-center"
+                            className="h-40 w-full object-cover object-center"
                           />
-                          <div className="p-4">
-                            <h4 className="font-serif text-xl text-foreground">{item.name}</h4>
-                            <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.info}</p>
+                          <div className="p-4 md:p-5">
+                            <h4 className="font-serif text-xl text-foreground md:text-2xl">
+                              {item.name}
+                            </h4>
+                            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                              {item.info}
+                            </p>
                           </div>
                         </div>
                       ))}

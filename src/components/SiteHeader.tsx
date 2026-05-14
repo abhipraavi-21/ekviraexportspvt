@@ -47,7 +47,7 @@ export function SiteHeader() {
             asChild
             className="rounded-full bg-gold text-gold-foreground hover:bg-gold/90 shadow-none px-5"
           >
-            <a href="mailto:ekviraexporthouse@gmail.com">Enquire Now</a>
+            <a href="tel:+917276533359">Enquire Now</a>
           </Button>
         </div>
 
@@ -83,7 +83,7 @@ export function SiteHeader() {
               asChild
               className="mt-2 rounded-full bg-gold text-gold-foreground hover:bg-gold/90"
             >
-              <a href="mailto:ekviraexporthouse@gmail.com">Enquire Now</a>
+              <a href="tel:+917276533359">Enquire Now</a>
             </Button>
           </div>
         </div>

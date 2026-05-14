@@ -16,6 +16,7 @@ import {
   Carrot,
   CupSoda,
   Factory,
+  Sparkles,
   ShieldCheck,
   Shirt,
   Wheat,
@@ -43,6 +44,7 @@ import textilesImage from "@/assets/category-images/textiles.jpg";
 import beveragesImage from "@/assets/category-images/beverages.jpg";
 import engineeringGoodsImage from "@/assets/category-images/engineering-goods.jpg";
 import seasonalProductsImage from "@/assets/category-images/seasonal-products.jpg";
+import honeyImage from "@/assets/category-images/honey.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -123,6 +125,15 @@ const categories = [
     description:
       "Seasonal harvest and festive product imagery for time-bound sourcing and merchandising.",
     products: ["Harvest produce", "Festive goods", "Limited-season items", "Seasonal packs"],
+  },
+  {
+    icon: Sparkles,
+    title: "Honey",
+    // eyebrow: "Category 07",
+    image: honeyImage,
+    description:
+      "Pure and packaged honey visuals for retail, wholesale, and export-ready food sourcing.",
+    products: ["Raw honey", "Processed honey", "Honeycomb", "Bulk supply"],
   },
 ] as const;
 
@@ -416,14 +427,14 @@ function HomePage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="category">Category</Label>
+                    <Label htmlFor="category">Role  </Label>
                     <Select name="category">
                       <SelectTrigger id="category" className="h-11">
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Supplier">Supplier</SelectItem>
-                        <SelectItem value="Customer">Customer</SelectItem>
+                        <SelectItem value="Customer">Buyer</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -442,6 +453,7 @@ function HomePage() {
                         <SelectItem value="Beverages">Beverages</SelectItem>
                         <SelectItem value="Engineering Goods">Engineering Goods</SelectItem>
                         <SelectItem value="Seasonal Products">Seasonal Products</SelectItem>
+                        <SelectItem value="Honey">Honey</SelectItem>
                         <SelectItem value="Other">Other</SelectItem>
                       </SelectContent>
                     </Select>

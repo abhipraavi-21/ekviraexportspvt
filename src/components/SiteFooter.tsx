@@ -21,6 +21,7 @@ const footerCategories = [
   "Beverages",
   "Engineering Goods",
   "Seasonal Products",
+  "Honey",
 ] as const;
 
 export function SiteFooter() {

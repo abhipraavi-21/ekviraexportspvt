@@ -22,6 +22,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
@@ -514,14 +515,14 @@ function AboutPage() {
               to your door.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="rounded-full bg-gold text-gold-foreground hover:bg-gold/90 px-6 h-12"
-              >
-                <a href="mailto:ekviraexporthouse@gmail.com">
-                  Get a Quote <ArrowRight className="h-4 w-4" />
-                </a>
+                <Button
+                  asChild
+                  size="lg"
+                  className="rounded-full bg-gold text-gold-foreground hover:bg-gold/90 px-6 h-12"
+                >
+                  <Link to="/" hash="contact">
+                    Get a Quote <ArrowRight className="h-4 w-4" />
+                  </Link>
               </Button>
               <Button
                 asChild
