@@ -645,9 +645,7 @@ function ProductsPage() {
               <div className="rounded-[2.2rem] border border-border/70 bg-card p-5 soft-shadow-lg md:p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    {/* <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-secondary/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                      Preview
-                    </span> */}
+                    
                     <h3 className="mt-4 font-serif text-3xl leading-tight text-foreground">
                       {activeProduct.title}
                     </h3>
